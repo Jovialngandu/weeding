@@ -11,15 +11,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Nation',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nom', models.CharField(max_length=100)),
-                ('population', models.IntegerField()),
-                ('superficie', models.IntegerField()),
-            ],
-        ),
+        
         migrations.CreateModel(
             name='AptitudePhysique',
             fields=[
