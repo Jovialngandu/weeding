@@ -1,29 +1,50 @@
-
 from django.db import models
-from django.contrib.auth.models import User
+
+class AptitudePhysique(models.Model):
+    vision = models.BooleanField()
+    audition = models.BooleanField()
+    mobilite = models.BooleanField()
+
+class User(models.Model):
+    password = models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
+
+class Personne(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    dateNaissance = models.DateField()
+    lieuNaissance = models.CharField(max_length=100)
+    nationalite = models.CharField(max_length=100)
+    aptitudePhysique = models.ForeignKey(AptitudePhysique, on_delete=models.CASCADE)
+
+class Officier(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    grade = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class Bourgoumestre(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class Admin(models.Model):
+    nom = models.CharField(max_length=100)
+    prenom = models.CharField(max_length=100)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 class Couple(models.Model):
-    partner1 = models.CharField(max_length=100, default='Unknown')
-    partner2 = models.OneToOneField(User, related_name='partner2', on_delete=models.CASCADE)
-    wedding_date = models.DateField()
-    wedding_location = models.CharField(max_length=200)
-    
-   
+    personne1 = models.ForeignKey(Personne, on_delete=models.CASCADE, related_name='personne1')
+    personne2 = models.ForeignKey(Personne, on_delete=models.CASCADE, related_name='personne2')
 
-class Guest(models.Model):
-    couple = models.ForeignKey(Couple, related_name='guests', on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-    is_attending = models.BooleanField(default=False)
+class Demande(models.Model):
+    dateDemande = models.DateField()
+    etatDemande = models.CharField(max_length=100)
+    couple = models.ForeignKey(Couple, on_delete=models.CASCADE)
 
-class GuestFood(models.Model):
-    guest = models.OneToOneField(Guest, on_delete=models.CASCADE, related_name='food_preference')
-    dietary_restriction = models.CharField(max_length=200, null=True, blank=True)
-    food_preference = models.CharField(max_length=200, null=True, blank=True)
-
-class RSVP(models.Model):
-    guest = models.OneToOneField(Guest, on_delete=models.CASCADE, related_name='rsvp')
-    is_attending = models.BooleanField(default=False)
-    number_of_guests = models.PositiveIntegerField(default=1)
-    message = models.TextField(null=True, blank=True)
+class Mariage(models.Model):
+    dateCelebration = models.DateField()
+    lieuCelebration = models.CharField(max_length=100)
+    couple = models.OneToOneField(Couple, on_delete=models.CASCADE)
+    officier = models.ForeignKey(Officier, on_delete=models.CASCADE)
+    bourgoumestre = models.ForeignKey(Bourgoumestre, on_delete=models.CASCADE)
