@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur - Gestion des Mariages Civils</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/diab/css/flowbite.min-2.3.0.css' %}">
+    <script src="{% static '/app/js/flowbite.min-2.3.0.js' %}"></script>
+    <script src="{% static '/app/js/gsap.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static '/diab/css/all.min.css' %}">
+    <link href="{% static '/app/css/css2.css' %}" rel="stylesheet">
+    <script src="{% static '/app/js/chart.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .profile-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .profile-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Profil Utilisateur</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Profile Information -->
+            <div class="profile-card p-6 col-span-2">
+                <h2 class="text-2xl font-semibold mb-4">Informations Personnelles</h2>
+                <div class="mb-4">
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Nom Complet</label>
+                    <input type="text" id="fullName" name="fullName" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div class="mb-4">
+                    <label for="role" class="block text-sm font-medium text-gray-700">Rôle</label>
+                    <select id="role" name="role" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="officier">Officier</option>
+                        <option value="admin">Administrateur</option>
+                        <option value="bourgmestre">Bourgmestre</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button onclick="saveProfile()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Sauvegarder les Modifications</button>
+            </div>
+            
+            <!-- Profile Picture -->
+            <div class="profile-card p-6">
+                <h2 class="text-2xl font-semibold mb-4">Photo de Profil</h2>
+                <div class="mb-4">
+                    <img id="profilePicture" src="https://picsum.photos/200/200?random=1" alt="Photo de profil" class="w-48 h-48 rounded-full mx-auto mb-4">
+                    <input type="file" id="profilePictureUpload" accept="image/*" class="hidden">
+                    <button onclick="document.getElementById('profilePictureUpload').click()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Changer la Photo</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Log -->
+        <div class="profile-card p-6 mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Journal d'Activité</h2>
+            <ul id="activityLog" class="space-y-2">
+                <!-- Activity log items will be inserted here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let user = {
+            fullName: "Jean Dupont",
+            email: "jean.dupont@example.com",
+            role: "officier",
+            phone: "+33 1 23 45 67 89"
+        };
+
+        let activityLog = [
+            { date: "2023-05-15", action: "A célébré le mariage de Marie et Pierre" },
+            { date: "2023-05-10", action: "A mis à jour le dossier du couple Dubois" },
+            { date: "2023-05-05", action: "A planifié 3 nouveaux mariages" }
+        ];
+
+        function loadUserData() {
+            document.getElementById('fullName').value = user.fullName;
+            document.getElementById('email').value = user.email;
+            document.getElementById('role').value = user.role;
+            document.getElementById('phone').value = user.phone;
+        }
+
+        function saveProfile() {
+            user.fullName = document.getElementById('fullName').value;
+            user.email = document.getElementById('email').value;
+            user.role = document.getElementById('role').value;
+            user.phone = document.getElementById('phone').value;
+
+            // Here you would typically send this data to your backend
+            alert("Profil mis à jour avec succès!");
+        }
+
+        function renderActivityLog() {
+            const logContainer = document.getElementById('activityLog');
+            logContainer.innerHTML = activityLog.map(item => `
+                <li class="bg-gray-50 p-3 rounded">
+                    <span class="font-semibold">${item.date}</span>: ${item.action}
+                </li>
+            `).join('');
+        }
+
+        document.getElementById('profilePictureUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserData();
+            renderActivityLog();
+
+            // gsap.from(".profile-card", {
+            //     duration: 0.8,
+            //     y: 50,
+            //     opacity: 0,
+            //     stagger: 0.2,
+            //     ease: "power3.out"
+            // });
+        });
+    </script>
+</body>
+</html>
