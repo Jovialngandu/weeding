@@ -6,6 +6,10 @@ from app.view import profil
 from app.view import couples
 from app.view import demandes
 from app.view import   acte
+from app.view import  infoCouple  
+from app.view import historicMariage
+from app.view import dashboard
+
 from . import views
 
 urlpatterns = [
@@ -17,5 +21,8 @@ urlpatterns = [
     path("couples",couples.couples, name="couples"),
     path("demandes",demandes.demandes, name="demandes"),
     path("acte",acte.acte, name="acte"),
+    path("infoCouple",infoCouple.infoCouple, name=" infoCouple"),
+    path("historicMariage",historicMariage.historicMariage, name="historicMariage"),
+    path("dashboard",dashboard.dashboard, name="dashboard"),
     
 ]

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations du Couple - Gestion des Mariages Civils</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/diab/css/flowbite.min-2.3.0.css' %}">
+    <script src="{% static '/app/js/flowbite.min-2.3.0.js' %}"></script>
+    <script src="{% static '/app/js/gsap.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static '/diab/css/all.min.css' %}">
+    <link href="{% static '/app/css/css2.css' %}" rel="stylesheet">
+    <script src="{% static '/app/js/chart.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .info-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Informations du Couple</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="info-card p-6">
+                <h2 class="text-2xl font-semibold mb-4">Détails du Couple</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold">Partenaire 1</h3>
+                        <p>Nom: Dubois</p>
+                        <p>Prénom: Marie</p>
+                        <p>Date de naissance: 15/03/1990</p>
+                        <p>Lieu de naissance: Paris</p>
+                        <p>Nationalité: Française</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Partenaire 2</h3>
+                        <p>Nom: Martin</p>
+                        <p>Prénom: Jean</p>
+                        <p>Date de naissance: 22/07/1988</p>
+                        <p>Lieu de naissance: Lyon</p>
+                        <p>Nationalité: Française</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card p-6">
+                <h2 class="text-2xl font-semibold mb-4">Détails du Mariage</h2>
+                <p><strong>Date du mariage:</strong> 12/05/2023</p>
+                <p><strong>Heure:</strong> 14:30</p>
+                <p><strong>Lieu:</strong> Mairie du 3ème arrondissement</p>
+                <p><strong>Officier d'état civil:</strong> Mme Lefevre</p>
+                <p><strong>Témoins:</strong> Sophie Durand, Thomas Petit</p>
+                <p><strong>Régime matrimonial:</strong> Communauté de biens réduite aux acquêts</p>
+            </div>
+        </div>
+        
+        <div class="info-card p-6 mt-8">
+            <h2 class="text-2xl font-semibold mb-4">Documents</h2>
+            <ul class="space-y-2">
+                <li class="flex items-center justify-between">
+                    <span>Acte de naissance (Marie Dubois)</span>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                </li>
+                <li class="flex items-center justify-between">
+                    <span>Acte de naissance (Jean Martin)</span>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                </li>
+                <li class="flex items-center justify-between">
+                    <span>Justificatif de domicile</span>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                </li>
+                <li class="flex items-center justify-between">
+                    <span>Certificat de célibat</span>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="mt-8 flex justify-end space-x-4">
+            <button class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">Modifier</button>
+            <button class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 transition">Annuler le mariage</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        //     // Animation for the info cards
+        //     gsap.from(".info-card", {
+        //         duration: 0.8,
+        //         y: 50,
+        //         opacity: 0,
+        //         stagger: 0.2,
+        //         ease: "power3.out"
+        //     });
+
+        //     // Animation for the buttons
+        //     gsap.from("button", {
+        //         duration: 0.5,
+        //         scale: 0.5,
+        //         opacity: 0,
+        //         stagger: 0.1,
+        //         ease: "back.out(1.7)",
+        //         delay: 0.5
+        //     });
+        // });
+    </script>
+</body>
+</html>
