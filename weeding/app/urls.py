@@ -5,6 +5,7 @@ from app.view import weeding
 from app.view import profil
 from app.view import couples
 from app.view import demandes
+from app.view import   acte
 from . import views
 
 urlpatterns = [
@@ -15,5 +16,6 @@ urlpatterns = [
     path("profil",profil.profil, name="profil"),
     path("couples",couples.couples, name="couples"),
     path("demandes",demandes.demandes, name="demandes"),
+    path("acte",acte.acte, name="acte"),
     
 ]
