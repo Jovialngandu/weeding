@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Gestion des Mariages Civils</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/app/css/flowbite.min-2.3.0.css' %}">
+    <script src="{% static '/app/js/flowbite.min-2.3.0.js' %}"></script>
+    <script src="{% static '/app/js/gsap.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static '/app/css/all.min.css' %}">
+    <link href="{% static '/app/css/css2.css' %}" rel="stylesheet">
+    <script src="{% static '/app/js/chart.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .login-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .login-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .input-style {
+            @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto px-4">
+        <div class="max-w-md mx-auto login-card p-8">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Connexion</h1>
+            <h2 class="text-xl font-semibold text-center text-gray-600 mb-6">Gestion des Mariages Civils</h2>
+            
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nom d'utilisateur</label>
+                    <input type="text" id="username" name="username" required class="input-style" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                    <input type="password" id="password" name="password" required class="input-style" placeholder="Entrez votre mot de passe">
+                </div>
+                
+                <div>
+                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1">Type d'utilisateur</label>
+                    <select id="userType" name="userType" required class="input-style">
+                        <option value="">Sélectionnez votre rôle</option>
+                        <option value="officer">Officier d'état civil</option>
+                        <option value="admin">Administrateur</option>
+                        <option value="mayor">Bourgmestre</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-700">
+                            Se souvenir de moi
+                        </label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                            Mot de passe oublié?
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105">
+                        Se connecter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.from(".login-card", {
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            });
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the login data to your server for authentication
+                const username = document.getElementById('username').value;
+                const userType = document.getElementById('userType').value;
+                alert(`Tentative de connexion pour ${username} en tant que ${userType}`);
+                // After successful authentication, redirect to the appropriate dashboard
+            });
+        });
+    </script>
+</body>
+</html>

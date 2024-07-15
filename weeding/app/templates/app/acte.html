@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acte de Mariage et Communication - Gestion des Mariages Civils</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/app/css/flowbite.min-2.3.0.css' %}">
+    <script src="{% static '/app/js/flowbite.min-2.3.0.js' %}"></script>
+    <script src="{% static '/app/js/gsap.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static '/app/css/all.min.css' %}">
+    <link href="{% static '/app/css/css2.css' %}" rel="stylesheet">
+    <script src="{% static '/app/js/chart.js' %}"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-8">Acte de Mariage et Communication</h1>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Acte de Mariage Section -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-semibold mb-4">Acte de Mariage</h2>
+                <div class="bg-gray-100 p-4 rounded-lg mb-4" id="marriage-certificate">
+                    <h3 class="text-xl font-semibold mb-2">République Française</h3>
+                    <p class="mb-2"><strong>Acte de Mariage</strong></p>
+                    <p>Le 12 mai 2023 à 14h30</p>
+                    <p>Ont été unis par les liens du mariage :</p>
+                    <p class="mt-2"><strong>Marie DUBOIS</strong>, née le 15 mars 1990 à Paris</p>
+                    <p>et</p>
+                    <p class="mb-2"><strong>Jean MARTIN</strong>, né le 22 juillet 1988 à Lyon</p>
+                    <p>Mariage célébré à la Mairie du 3ème arrondissement de Paris</p>
+                    <p>En présence des témoins : Sophie Durand et Thomas Petit</p>
+                    <p class="mt-2">Officier d'état civil : Mme Lefevre</p>
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="printCertificate()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Imprimer</button>
+                    <button onclick="sendCertificateByEmail()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Envoyer par Email</button>
+                </div>
+            </div>
+
+            <!-- Communication Section -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-semibold mb-4">Envoyer un Message au Couple</h2>
+                <form onsubmit="sendMessage(event)">
+                    <div class="mb-4">
+                        <label for="subject" class="block mb-2">Sujet</label>
+                        <input type="text" id="subject" name="subject" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <input type="checkbox" id="send-copy" name="send-copy" class="mr-2">
+                            <label for="send-copy">M'envoyer une copie</label>
+                        </div>
+                        <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition">Envoyer le Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function printCertificate() {
+            const printContent = document.getElementById('marriage-certificate').innerHTML;
+            const originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+
+        function sendCertificateByEmail() {
+            // Implement email sending logic here
+            alert("Le certificat de mariage a été envoyé par email au couple.");
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            // Implement message sending logic here
+            alert("Votre message a été envoyé au couple.");
+            event.target.reset();
+        }
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     gsap.from(".card", {
+        //         duration: 0.8,
+        //         y: 50,
+        //         opacity: 0,
+        //         stagger: 0.2,
+        //         ease: "power3.out"
+        //     });
+
+        //     gsap.from("button", {
+        //         duration: 0.5,
+        //         scale: 0.5,
+        //         opacity: 0,
+        //         stagger: 0.1,
+        //         ease: "back.out(1.7)",
+        //         delay: 0.5
+        //     });
+        // });
+    </script>
+</body>
+</html>
