@@ -26,13 +26,41 @@
         .profile-card:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+        .div-man{
+            margin-left:200px;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-gray-800 mb-8">Profil Utilisateur</h1>
+    
+    <div class="bg-white fixed top-0 left-0 py-0 px-6 h-screen flex flex-col justify-between w-52">
+        <div>
+            <h1 class="text-3xl font-bold py-6">Wee<span class="text-green-400">ding</span></h1>
+
+            <nav class="flex flex-col">
+                <a href="{% url 'dashboard' %}" class="p-3 my-px rounded-xl hover:bg-gray-200"><i class="fa fa-chart-pie"></i> Dashboard</a>
+                <a href="{% url 'demandes' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200"><i class="fa fa-envelope-open-text"></i> Demandes</a>
+                <a href="{% url 'couples' %}" class="p-3 my-px rounded-xl hover:bg-gray-200"><i class="fa fa-venus-mars"></i> Couples</a>
+                <a href="{% url 'historicMariage' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200"><i class="fa fa-book"></i> Historique</a>
+            </nav>
+        </div>
+
+        <a href="{% url 'connexion' %}" class="block p-3 my-3 font-bold rounded-xl bg-green-400 hover:bg-green-800 text-center">Deconnexion</a>
+    </div>
+
+{% comment %} ----------------------------------------------------- {% endcomment %}
+
+    <div class="div-man px-4">
+        <header class="p-3 flex align-center justify-between w-full">
+            <h1 class="text-2xl font-bold text-gray-800 mb-8">Profil utilisateur</h1>
+
+            <a href="{% url 'profil' %}"class="font-bold">
+                <i class="fa fa-user rounded-xl bg-white p-2"></i>
+                User name
+            </a>
+        </header>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="">
             <!-- Profile Information -->
             <div class="profile-card p-6 col-span-2">
                 <h2 class="text-2xl font-semibold mb-4">Informations Personnelles</h2>
@@ -56,92 +84,12 @@
                     <label for="phone" class="block text-sm font-medium text-gray-700">Téléphone</label>
                     <input type="tel" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                 </div>
-                <button onclick="saveProfile()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Sauvegarder les Modifications</button>
-            </div>
-            
-            <!-- Profile Picture -->
-            <div class="profile-card p-6">
-                <h2 class="text-2xl font-semibold mb-4">Photo de Profil</h2>
-                <div class="mb-4">
-                    <img id="profilePicture" src="https://picsum.photos/200/200?random=1" alt="Photo de profil" class="w-48 h-48 rounded-full mx-auto mb-4">
-                    <input type="file" id="profilePictureUpload" accept="image/*" class="hidden">
-                    <button onclick="document.getElementById('profilePictureUpload').click()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Changer la Photo</button>
-                </div>
+                <button onclick="saveProfile()" class="mt-4 bg-green-400 text-white px-4 py-2 rounded-full text-end hover:bg-green-800 transition">Sauvegarder les Modifications</button>
             </div>
         </div>
         
-        <!-- Activity Log -->
-        <div class="profile-card p-6 mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Journal d'Activité</h2>
-            <ul id="activityLog" class="space-y-2">
-                <!-- Activity log items will be inserted here -->
-            </ul>
-        </div>
     </div>
 
-    <script>
-        let user = {
-            fullName: "Jean Dupont",
-            email: "jean.dupont@example.com",
-            role: "officier",
-            phone: "+33 1 23 45 67 89"
-        };
-
-        let activityLog = [
-            { date: "2023-05-15", action: "A célébré le mariage de Marie et Pierre" },
-            { date: "2023-05-10", action: "A mis à jour le dossier du couple Dubois" },
-            { date: "2023-05-05", action: "A planifié 3 nouveaux mariages" }
-        ];
-
-        function loadUserData() {
-            document.getElementById('fullName').value = user.fullName;
-            document.getElementById('email').value = user.email;
-            document.getElementById('role').value = user.role;
-            document.getElementById('phone').value = user.phone;
-        }
-
-        function saveProfile() {
-            user.fullName = document.getElementById('fullName').value;
-            user.email = document.getElementById('email').value;
-            user.role = document.getElementById('role').value;
-            user.phone = document.getElementById('phone').value;
-
-            // Here you would typically send this data to your backend
-            alert("Profil mis à jour avec succès!");
-        }
-
-        function renderActivityLog() {
-            const logContainer = document.getElementById('activityLog');
-            logContainer.innerHTML = activityLog.map(item => `
-                <li class="bg-gray-50 p-3 rounded">
-                    <span class="font-semibold">${item.date}</span>: ${item.action}
-                </li>
-            `).join('');
-        }
-
-        document.getElementById('profilePictureUpload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profilePicture').src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadUserData();
-            renderActivityLog();
-
-            // gsap.from(".profile-card", {
-            //     duration: 0.8,
-            //     y: 50,
-            //     opacity: 0,
-            //     stagger: 0.2,
-            //     ease: "power3.out"
-            // });
-        });
-    </script>
+    
 </body>
 </html>

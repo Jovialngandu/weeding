@@ -26,11 +26,39 @@
         .info-card:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+        .div-man{
+            margin-left:200px;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-gray-800 mb-8">Informations du Couple</h1>
+    
+    <div class="bg-white fixed top-0 left-0 py-0 px-6 h-screen flex flex-col justify-between w-52">
+        <div>
+            <h1 class="text-3xl font-bold py-6">Wee<span class="text-green-400">ding</span></h1>
+
+            <nav class="flex flex-col">
+                <a href="{% url 'dashboard' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-chart-pie"></i> Dashboard</a>
+                <a href="{% url 'demandes' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-envelope-open-text"></i> Demandes</a>
+                <a href="{% url 'couples' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-venus-mars"></i> Couples</a>
+                <a href="{% url 'historicMariage' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-book"></i> Historique</a>
+            </nav>
+        </div>
+
+        <a href="{% url 'connexion' %}" class="block p-3 my-3 font-bold rounded-xl bg-green-400 hover:bg-green-800 text-center transition">Deconnexion</a>
+    </div>
+
+{% comment %} ----------------------------------------------------- {% endcomment %}
+
+    <div class="div-man px-4">
+        <header class="p-3 flex align-center justify-between w-full">
+            <h1 class="text-2xl font-bold text-gray-800 mb-8">Information du couple</h1>
+
+            <a href="{% url 'profil' %}"class="font-bold">
+                <i class="fa fa-user rounded-xl bg-white p-2"></i>
+                User name
+            </a>
+        </header>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="info-card p-6">
@@ -71,50 +99,28 @@
             <ul class="space-y-2">
                 <li class="flex items-center justify-between">
                     <span>Acte de naissance (Marie Dubois)</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
                 </li>
                 <li class="flex items-center justify-between">
                     <span>Acte de naissance (Jean Martin)</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
                 </li>
                 <li class="flex items-center justify-between">
                     <span>Justificatif de domicile</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
                 </li>
                 <li class="flex items-center justify-between">
                     <span>Certificat de célibat</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Voir</button>
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
                 </li>
             </ul>
         </div>
         
-        <div class="mt-8 flex justify-end space-x-4">
-            <button class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">Modifier</button>
-            <button class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 transition">Annuler le mariage</button>
+        <div class="mt-8 flex justify-end space-x-4 pb-5">
+            <button class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">Modifier</button>
+            <button class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-800 transition">Annuler le mariage</button>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        //     // Animation for the info cards
-        //     gsap.from(".info-card", {
-        //         duration: 0.8,
-        //         y: 50,
-        //         opacity: 0,
-        //         stagger: 0.2,
-        //         ease: "power3.out"
-        //     });
-
-        //     // Animation for the buttons
-        //     gsap.from("button", {
-        //         duration: 0.5,
-        //         scale: 0.5,
-        //         opacity: 0,
-        //         stagger: 0.1,
-        //         ease: "back.out(1.7)",
-        //         delay: 0.5
-        //     });
-        // });
-    </script>
 </body>
 </html>
