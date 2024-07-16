@@ -38,7 +38,7 @@ Cette commande installera toutes les dépendances du projet se trouvant dans le 
 ### <a name="s-1.4"></a>1.4 - Lancement du serveur Django
 Exécutez la commande suivante à la racine du projet :
 ```sh
-python app/manage.py runserver
+python weeding/manage.py runserver
 ```
 
 <br/>
@@ -48,7 +48,7 @@ python app/manage.py runserver
 ### <a name="s-2.1"></a>2.1 - Création des migrations
 Exécutez la commande suivante à la racine du projet :
 ```sh
-python app/manage.py makemigrations
+python weeding/manage.py makemigrations
 ```
 
 <br/>
@@ -56,7 +56,7 @@ python app/manage.py makemigrations
 ### <a name="s-2.2"></a>2.2 - Appliquer les migrations
 Exécutez la commande suivante à la racine du projet :
 ```sh
-python app/manage.py migrate
+python weeding/manage.py migrate
 ```
 Cette commande appliquera les changements dans la base de données.
 
@@ -65,7 +65,7 @@ Cette commande appliquera les changements dans la base de données.
 ### <a name="s-2.3"></a>2.3 - Remplir la BDD
 Exécutez la commande suivante à la racine du projet :
 ```sh
-python app/manage.py seed
+python weeding/manage.py seed
 ```
 Cette commande ajoutera des fausses données dans la base de données afin de la remplir au minimum.
 > Afin de voir quels sont les modèles concernés par l'ajout de ces données<br/>Consulter le fichier de la commande `seed` se trouvant dans `./app/diab/management/commands/seed.py`.<br/>Dans ce fichier, vous trouverez les ***Factory*** de ***Model*** et le nombre de données qu'elles créeront dans la base de données.
