@@ -27,11 +27,39 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
+        .div-man{
+            margin-left:200px;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-4xl font-bold text-gray-800 mb-8">Historique des Mariages</h1>
+    
+    <div class="bg-white fixed top-0 left-0 py-0 px-6 h-screen flex flex-col justify-between w-52">
+        <div>
+            <h1 class="text-3xl font-bold py-6">Wee<span class="text-green-400">ding</span></h1>
+
+            <nav class="flex flex-col">
+                <a href="{% url 'dashboard' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-chart-pie"></i> Dashboard</a>
+                <a href="{% url 'demandes' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200"><i class="fa fa-envelope-open-text"></i> Demandes</a>
+                <a href="{% url 'couples' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-venus-mars"></i> Couples</a>
+                <a href="{% url 'historicMariage' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition bg-gray-100 font-bold transition"><i class="fa fa-book"></i> Historique</a>
+            </nav>
+        </div>
+
+        <a href="{% url 'connexion' %}" class="block p-3 my-3 font-bold rounded-xl bg-green-400 hover:bg-green-800 text-center transition">Deconnexion</a>
+    </div>
+
+{% comment %} ----------------------------------------------------- {% endcomment %}
+
+    <div class="div-man px-4">
+        <header class="p-3 flex align-center justify-between w-full">
+            <h1 class="text-2xl font-bold text-gray-800 mb-8">Historique des Mariages</h1>
+
+            <a href="{% url 'profil' %}"class="font-bold">
+                <i class="fa fa-user rounded-xl bg-white p-2"></i>
+                User name
+            </a>
+        </header>
         
         <div class="history-card p-6 mb-8">
             <div class="flex flex-wrap justify-between items-center mb-6">
@@ -57,7 +85,7 @@
                             <th class="p-3">Couple</th>
                             <th class="p-3">Lieu</th>
                             <th class="p-3">Officier d'état civil</th>
-                            <th class="p-3">Actions</th>
+                            <th class="p-3 text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +95,8 @@
                             <td class="p-3">Mairie du 3ème</td>
                             <td class="p-3">Mme Lefevre</td>
                             <td class="p-3">
-                                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Détails</button>
+                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
                             </td>
                         </tr>
                         <tr class="bg-gray-50">
@@ -76,7 +105,8 @@
                             <td class="p-3">Mairie du 7ème</td>
                             <td class="p-3">M. Dupont</td>
                             <td class="p-3">
-                                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Détails</button>
+                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +115,8 @@
                             <td class="p-3">Mairie du 5ème</td>
                             <td class="p-3">Mme Moreau</td>
                             <td class="p-3">
-                                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Détails</button>
+                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
                             </td>
                         </tr>
                         <tr class="bg-gray-50">
@@ -94,7 +125,8 @@
                             <td class="p-3">Mairie du 2ème</td>
                             <td class="p-3">M. Rousseau</td>
                             <td class="p-3">
-                                <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">Détails</button>
+                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
                             </td>
                         </tr>
                     </tbody>
@@ -104,8 +136,8 @@
             <div class="mt-6 flex justify-between items-center">
                 <p class="text-gray-600">Affichage de 1 à 4 sur 120 entrées</p>
                 <div class="flex space-x-2">
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition">Précédent</button>
-                    <button class="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition">Suivant</button>
+                    <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition">Précédent</button>
+                    <button class="px-4 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition">Suivant</button>
                 </div>
             </div>
         </div>
