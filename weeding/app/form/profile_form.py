@@ -25,6 +25,9 @@ class update(forms.Form):
 	
 	sex = forms.ChoiceField(label="Sexe", choices=[('f', 'Femme'), ('m', 'Homme')], required=False)
 
+	date_of_birth = forms.DateField(label="Date de naissance", required=False)
+	place_of_birth = forms.CharField(label="Lieu de naissance", max_length=100, required=False)
+
 	new_password = forms.CharField(label="Nouveau mot de passe", widget=forms.PasswordInput, max_length=50, required=False)
 	confirm_new_password = forms.CharField(label="Confirmez le nouveau mot de passe", widget=forms.PasswordInput, max_length=20, required=False)
 	current_password = forms.CharField(label="Mot de passe actuelle", widget=forms.PasswordInput, max_length=20, required=False)
