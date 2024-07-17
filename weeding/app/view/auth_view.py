@@ -16,7 +16,7 @@ from app.models.User import User
 from app.form import auth_form
 
 class register(TemplateView) :
-	template_name = "auth.html"
+	template_name = "app/inscription.html"
 	
 	form_class = auth_form.register
 	register_auth_redirect = '/'
@@ -49,7 +49,7 @@ class register(TemplateView) :
 		return super().dispatch(*args, **kwargs)
 
 class login(TemplateView) :
-	template_name = "auth.html"
+	template_name = "app/connexion.html"
 	
 	form_class = auth_form.login
 	login_auth_redirect = '/'
