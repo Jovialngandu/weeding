@@ -27,5 +27,7 @@ urlpatterns = [
     path("infoCouple",infoCouple.infoCouple, name="infoCouple"),
     path("historicMariage",historicMariage.historicMariage, name="historicMariage"),
     path("code",code.code, name="code"),
-    
+
+    path("logout", auth_view.logout.as_view(), name="logout"),
+
 ]
