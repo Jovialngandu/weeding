@@ -30,7 +30,7 @@ class register(TemplateView) :
 	def post(self, request, *args, **kwargs):
 		form = self.form_class(request.POST)
 		if form.is_valid() :
-			person = Person(lastname=form.cleaned_data['lastname'], firstname=form.cleaned_data['firstname'], middlename=form.cleaned_data['middlename'], nationality=form.cleaned_data['nationality'], phone_number=form.cleaned_data['phone_number'], sex=form.cleaned_data['sex'])
+			person = Person(lastname=form.cleaned_data['lastname'], firstname=form.cleaned_data['firstname'], middlename=form.cleaned_data['middlename'], nationality=form.cleaned_data['nationality'], phone_number=form.cleaned_data['phone_number'], sex=form.cleaned_data['sex'], date_of_birth=form.cleaned_data['date_of_birth'], place_of_birth=form.cleaned_data['place_of_birth'])
 			person.save()
 			user = User.objects.create_user(email=form.cleaned_data['email'], password=form.cleaned_data['password'], person=person)
 			user.save()
@@ -60,6 +60,7 @@ class login(TemplateView) :
 		context = {**super().get_context_data(**kwargs), **datas}
 		return context
 	def post(self, request, *args, **kwargs):
+		return HttpResponse('yess')
 		form = self.form_class(request.POST)
 		if form.is_valid() :
 			user = authenticate(request, email=form.cleaned_data['email'], password=form.cleaned_data['password'])
