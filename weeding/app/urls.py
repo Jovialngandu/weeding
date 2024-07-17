@@ -9,13 +9,17 @@ from app.view import   acte
 from app.view import  infoCouple  
 from app.view import historicMariage
 from app.view import dashboard
+from .view import auth_view, profile_view
 
 from . import views
 
 urlpatterns = [
-    path("",dashboard.dashboard, name="dashboard"),
-    path("login",connexion.connexion, name="connexion"),
-    path("signin",inscription.inscription, name="inscription"),
+    path("", dashboard.index.as_view(), name="dashboard"),
+    # path("",dashboard.dashboard, name="dashboard"),
+    path("login", auth_view.login.as_view(), name="login"),
+    # path("login",connexion.connexion, name="connexion"),
+    path("register", auth_view.register.as_view(), name="register"),
+    # path("signin",inscription.inscription, name="inscription"),
     path("profil",profil.profil, name="profil"),
     path("couples",couples.couples, name="couples"),
     path("demandes",demandes.demandes, name="demandes"),
@@ -23,5 +27,7 @@ urlpatterns = [
     path("infoCouple",infoCouple.infoCouple, name="infoCouple"),
     path("historicMariage",historicMariage.historicMariage, name="historicMariage"),
     path("code",code.code, name="code"),
-    
+
+    path("logout", auth_view.logout.as_view(), name="logout"),
+
 ]
