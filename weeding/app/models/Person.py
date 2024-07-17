@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.core.validators import RegexValidator
 
 class Person(models.Model):
@@ -20,3 +21,5 @@ class Person(models.Model):
 	# physical_ability = models.OneToOneField(PhysicalAbility, null=True, on_delete=models.CASCADE)
 	class Meta:
 		db_table = 'people'
+
+	
