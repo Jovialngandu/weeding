@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 def dashboard(request):
    
-    return render(request, 'app/dashboard.html')
+    return render(request, 'app/municipality/dashboard.html')

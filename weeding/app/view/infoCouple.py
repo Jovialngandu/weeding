@@ -3,4 +3,4 @@ from django.http import HttpResponse
 from app.models.Couple import Couple
 def  infoCouple(request):
    
-    return render(request, 'app/infoCouple.html')
+    return render(request, 'app/municipality/mayor/infoCouple.html')

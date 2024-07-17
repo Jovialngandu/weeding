@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 def code(request):
    
-    return render(request, 'app/code.html')
+    return render(request, 'app/couple/code.html')
