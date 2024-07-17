@@ -56,11 +56,11 @@ class login(TemplateView) :
 	login_fall_redirect = '/login'
 
 	def get_context_data(self, **kwargs):
-		datas = {}
+		_next = self.request.GET.get('next')
+		datas = {'next_after_login' : ('?next='+_next) if _next != '' and _next != None else ''}
 		context = {**super().get_context_data(**kwargs), **datas}
 		return context
 	def post(self, request, *args, **kwargs):
-		return HttpResponse('yess')
 		form = self.form_class(request.POST)
 		if form.is_valid() :
 			user = authenticate(request, email=form.cleaned_data['email'], password=form.cleaned_data['password'])
