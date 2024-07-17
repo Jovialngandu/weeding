@@ -1,7 +1,8 @@
 from django.db import models
-from app.models import Officer
-from app.models import Couple
-from app.models import Mayor
+from app.models.Officer import Officer
+from app.models.Couple import Couple
+from app.models.Mayor import Mayor
+
 
 class Marriage(models.Model):
     celebration_date = models.DateField()

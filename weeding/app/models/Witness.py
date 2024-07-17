@@ -1,6 +1,6 @@
 from django.db import models
-from app.models import Person
-from app.models import Marriage
+from app.models.Person import Person
+from app.models.Marriage import Marriage
 
 class Witness(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)

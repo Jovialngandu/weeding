@@ -1,5 +1,5 @@
 from django.db import models
-from app.models import Couple
+from app.models.Couple import Couple
 
 class Request(models.Model):
     request_date = models.DateField()
