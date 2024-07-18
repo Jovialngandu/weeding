@@ -36,6 +36,7 @@ Cette commande installera toutes les dépendances du projet se trouvant dans le 
 <br/>
 
 ### <a name="s-1.4"></a>1.4 - Lancement du serveur Django
+> Ce serait mieux avant de lancer le serveur que vous créiez les [migrations](#s-2.1) en premier, pour prévenir d'éventuelles erreurs liées au manque de BDD
 Exécutez la commande suivante à la racine du projet :
 ```sh
 python weeding/manage.py runserver
