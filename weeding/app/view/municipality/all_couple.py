@@ -4,14 +4,12 @@ from app.models.Couple import  Couple
 from django.http import HttpResponse
 
 class couples(TemplateView):
-    template_name = "app/couples.html"
+    template_name = "app/municipality/all_couple.html"
    
     def get_queryset(self):
             return Couple.objects.all()
     def get_context_data(self, **kwargs):
-    # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
         context["couples"] = self.get_queryset()
-        print(context)
+        # print(context)
         return context
