@@ -6,4 +6,4 @@ from app.models.Witness import  Witness
 
 def historicMariage(request):
    
-    return render(request, 'app/historicMariage.html')
+    return render(request, 'app/municipality/historicMariage.html')

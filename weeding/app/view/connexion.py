@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 def connexion(request):
    
-    return render(request, 'app/connexion.html')
+    return render(request, 'app/public/connexion.html')
