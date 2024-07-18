@@ -9,6 +9,7 @@ from app.view.municipality import all_demand
 from app.view.municipality.mayor import   mariage_certificate
 from app.view.municipality import  couple_details  
 from app.view.municipality import historic_mariage
+# from app.view.municipality import dashboard
 from app.view.municipality import dashboard
 from .view.public import profile_view
 from .view.public import auth_view
@@ -22,7 +23,7 @@ urlpatterns = [
               path("signin_couple",signin.signin.as_view(), name="signin_couple"),  
               path("couple_login",couple_login.connexion.as_view(), name="couple_login"),
     #municipality
-              path("",dashboard.dashboard.as_view(), name="dashboard"),
+              path("",dashboard.index.as_view(), name="dashboard"),
               path("couples",all_couple.couples.as_view(), name="couples"),
               path("demandes",all_demand.all_demand.as_view(), name="demandes"),
               path("historicMariage",historic_mariage.historic_mariage.as_view(), name="historicMariage"),

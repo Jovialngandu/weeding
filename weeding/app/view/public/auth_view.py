@@ -49,7 +49,7 @@ class register(TemplateView) :
 		return super().dispatch(*args, **kwargs)
 
 class login(TemplateView) :
-	template_name = "app/public/connexion.html"
+	template_name = "app/public/auth.html"
 	
 	form_class = auth_form.login
 	login_auth_redirect = '/'
