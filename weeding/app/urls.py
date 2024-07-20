@@ -14,6 +14,7 @@ from app.view.municipality import dashboard
 from .view.public import profile_view
 from .view.public import auth_view
 
+from .view import test
 from . import views
 
 urlpatterns = [
@@ -40,6 +41,10 @@ urlpatterns = [
              # path("signin",inscription.inscription, name="inscription"),
              path("profil",profil.profil.as_view(), name="profil"),
     #admin  
+
+
+    #test  
+             path("test",test.testView.as_view(), name="test"),
 
     
 

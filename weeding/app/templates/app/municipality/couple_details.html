@@ -33,20 +33,7 @@
 </head>
 <body class="bg-gray-100">
     
-    <div class="bg-white fixed top-0 left-0 py-0 px-6 h-screen flex flex-col justify-between w-52">
-        <div>
-            <h1 class="text-3xl font-bold py-6">Wee<span class="text-green-400">ding</span></h1>
-
-            <nav class="flex flex-col">
-                <a href="{% url 'dashboard' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-chart-pie"></i> Dashboard</a>
-                <a href="{% url 'demandes' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-envelope-open-text"></i> Demandes</a>
-                <a href="{% url 'couples' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-venus-mars"></i> Couples</a>
-                <a href="{% url 'historicMariage' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-book"></i> Historique</a>
-            </nav>
-        </div>
-
-        <a href="{% comment %}{% url 'connexion' %}{% endcomment %}" class="block p-3 my-3 font-bold rounded-xl bg-green-400 hover:bg-green-800 text-center transition">Deconnexion</a>
-    </div>
+    {% include "app/gabarits/horizontal_menu.html" %}
 
 {% comment %} ----------------------------------------------------- {% endcomment %}
 

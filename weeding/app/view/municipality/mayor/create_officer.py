@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 
 class create_officer(TemplateView):
-    template_name = "app/municipality/create_officer.html"
+    template_name = "app/municipality/mayor/create_officer.html"
    
     def get_queryset(self):
             return ''
