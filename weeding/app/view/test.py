@@ -19,6 +19,17 @@ class testView(TemplateView):
         # Add in the publisher
         context["hello"] = self.get_queryset()
         return context
+    def post(self, request, *args, **kwargs):
+		
+		    return HttpResponse(request)
+#    def get(self, request, *args, **kwargs):
+# 		    return super().get(request, *args, **kwargs)
+# 	def dispatch(self, *args, **kwargs):
+		
+# 		    return super().dispatch(*args, **kwargs)
+    
+    
+    
 # def test(request):
 
 #     allpatient=Personne.objects.all()

@@ -1,33 +1,51 @@
 from django.urls import path
-from app.view import connexion
-from app.view import inscription
-from app.view import code
-from app.view import profil
-from app.view import couples
-from app.view import demandes
-from app.view import   acte
-from app.view import  infoCouple  
-from app.view import historicMariage
-from app.view import dashboard
-from .view import auth_view, profile_view
+from app.view.public import couple_login
+from app.view.couple import signin
+from app.view.couple import generate_key
+from app.view.municipality.mayor import create_officer
+from app.view.public import profil
+from app.view.municipality import all_couple
+from app.view.municipality import all_demand
+from app.view.municipality.mayor import   mariage_certificate
+from app.view.municipality import  couple_details  
+from app.view.municipality import historic_mariage
+# from app.view.municipality import dashboard
+from app.view.municipality import dashboard
+from .view.public import profile_view
+from .view.public import auth_view
 
+from .view import test
 from . import views
 
 urlpatterns = [
-    path("", dashboard.index.as_view(), name="dashboard"),
-    # path("",dashboard.dashboard, name="dashboard"),
-    path("login", auth_view.login.as_view(), name="login"),
-    # path("login",connexion.connexion, name="connexion"),
-    path("register", auth_view.register.as_view(), name="register"),
-    # path("signin",inscription.inscription, name="inscription"),
-    path("profil",profil.profil, name="profil"),
-    path("couples",couples.couples.as_view(), name="couples"),
-    path("demandes",demandes.demandes, name="demandes"),
-    path("acte",acte.acte, name="acte"),
-    path("infoCouple",infoCouple.infoCouple, name="infoCouple"),
-    path("historicMariage",historicMariage.historicMariage, name="historicMariage"),
-    path("code",code.code, name="code"),
 
-    path("logout", auth_view.logout.as_view(), name="logout"),
+    #couple
+              path("generate_key",generate_key.generate_key.as_view(), name="generate_key"),  
+              path("signin_couple",signin.signin.as_view(), name="signin_couple"),  
+              path("couple_login",couple_login.connexion.as_view(), name="couple_login"),
+    #municipality
+              path("",dashboard.index.as_view(), name="dashboard"),
+              path("couples",all_couple.couples.as_view(), name="couples"),
+              path("demandes",all_demand.all_demand.as_view(), name="demandes"),
+              path("historicMariage",historic_mariage.historic_mariage.as_view(), name="historicMariage"),
+              path("infoCouple",couple_details.couple_details.as_view(), name="infoCouple"), 
+    #municipality/mayor
+              path("create_user",create_officer.create_officer.as_view(), name="create_user"),
+              path("acte",mariage_certificate.mariage_certificate.as_view(), name="acte"),
+              
+    #public
+             path("logout", auth_view.logout.as_view(), name="logout"),
+             path("login", auth_view.login.as_view(), name="login"),
+           
+             path("register", auth_view.register.as_view(), name="register"),
+             # path("signin",inscription.inscription, name="inscription"),
+             path("profil",profil.profil.as_view(), name="profil"),
+    #admin  
+
+
+    #test  
+             path("test",test.testView.as_view(), name="test"),
+
+    
 
 ]
