@@ -16,6 +16,7 @@ class profil(TemplateView):
         user_connected=Person.objects.get(pk=context['person_id'])    
         context['profil']=user_connected 
         context['email']=self.request.user.email
+        context['role']=self.request.user.is_staff
         print(context)
         return context
         # 
