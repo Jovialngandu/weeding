@@ -46,60 +46,50 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <h3 class="font-semibold">Partenaire 1</h3>
-                        <p>Nom: Dubois</p>
-                        <p>Prénom: Marie</p>
-                        <p>Date de naissance: 15/03/1990</p>
-                        <p>Lieu de naissance: Paris</p>
-                        <p>Nationalité: Française</p>
+                        <p>Nom:{{marriage.couple.person1.firstname}}</p>
+                        <p>Prénom: {{marriage.couple.person1.lastname}}</p>
+                        <p>Date de naissance: {{marriage.couple.person1.date_of_birth}}</p>
+                        <p>Lieu de naissance: {{marriage.couple.person1.place_of_birth}}</p>
+                        <p>Nationalité: {{marriage.couple.person1.nationality}}</p>
                     </div>
                     <div>
                         <h3 class="font-semibold">Partenaire 2</h3>
-                        <p>Nom: Martin</p>
-                        <p>Prénom: Jean</p>
-                        <p>Date de naissance: 22/07/1988</p>
-                        <p>Lieu de naissance: Lyon</p>
-                        <p>Nationalité: Française</p>
+                        <p>Nom:{{marriage.couple.person2.firstname}}</p>
+                        <p>Prénom: {{marriage.couple.person2.lastname}}</p>
+                        <p>Date de naissance: {{marriage.couple.person2.date_of_birth}}</p>
+                        <p>Lieu de naissance:{{marriage.couple.person2.place_of_birth}}</p>
+                        <p>Nationalité: {{marriage.couple.person2.nationality}}</p>
                     </div>
                 </div>
+
+
+                <button class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">Modifier</button>
+
             </div>
             
-            <div class="info-card p-6">
+            <div class="info-card p-6 ">
                 <h2 class="text-2xl font-semibold mb-4">Détails du Mariage</h2>
-                <p><strong>Date du mariage:</strong> 12/05/2023</p>
-                <p><strong>Heure:</strong> 14:30</p>
-                <p><strong>Lieu:</strong> Mairie du 3ème arrondissement</p>
-                <p><strong>Officier d'état civil:</strong> Mme Lefevre</p>
-                <p><strong>Témoins:</strong> Sophie Durand, Thomas Petit</p>
-                <p><strong>Régime matrimonial:</strong> Communauté de biens réduite aux acquêts</p>
+                <p><strong>Date du mariage:</strong> {{marriage.celebration_date}}</p>
+                <p><strong>Lieu:</strong> {{marriage.celebration_place}}</p>
+                <p><strong>Officier d'état civil:</strong>  {{marriage.officer.user.person.firstname}}   {{marriage.officer.user.person.lastname}}</p>
+                <p><strong>Témoins:</strong> 
+                
+                    {% for witness in witness %}
+                        
+                    {{witness.person.firstname}}  {{witness.person.lastname}}  ,
+                    {% endfor %}
+                
+                
+                </p>
+                <button class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition   mt-10 ">Modifier</button>
+
             </div>
+
         </div>
         
-        <div class="info-card p-6 mt-8">
-            <h2 class="text-2xl font-semibold mb-4">Documents</h2>
-            <ul class="space-y-2">
-                <li class="flex items-center justify-between">
-                    <span>Acte de naissance (Marie Dubois)</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
-                </li>
-                <li class="flex items-center justify-between">
-                    <span>Acte de naissance (Jean Martin)</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
-                </li>
-                <li class="flex items-center justify-between">
-                    <span>Justificatif de domicile</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
-                </li>
-                <li class="flex items-center justify-between">
-                    <span>Certificat de célibat</span>
-                    <button class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-700 transition">Voir</button>
-                </li>
-            </ul>
-        </div>
         
-        <div class="mt-8 flex justify-end space-x-4 pb-5">
-            <button class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">Modifier</button>
-            <button class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-800 transition">Annuler le mariage</button>
-        </div>
+        
+        
     </div>
 
 </body>

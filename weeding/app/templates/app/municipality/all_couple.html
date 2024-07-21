@@ -48,144 +48,36 @@
         
         <div id="couples-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Couple cards will be dynamically inserted here -->
+            {% for marriage in marriage %}
+                    <div class="couple-card p-6" data-id="1">
+                        <h2 class="text-2xl font-semibold mb-4">{{marriage.couple.person1.firstname}}   {{marriage.couple.person1.lastname}} &amp; {{marriage.couple.person2.firstname}}  {{marriage.couple.person2.lastname}}</h2>
+                        <p class="mb-4">Date de mariage :{{marriage.celebration_date}}</p>
+                        <div class="flex justify-end space-x-4">
+                            <a href="{% url 'acte' marriage.couple.id %}" class="bg-green-400 text-white px-4 py-2 rounded-full hover:bg-green-800 transition">Acte</a>
+                            <a href="{% url 'infoCouple' marriage.couple.id %}" class="border border-solid border-gray-600 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-300 transition">Details</a>
+                            <button  class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-800 transition">Supprimer</button>
+                        </div>
+                    </div>
+             {% endfor %}
+       
+       
+       
+       
         </div>
 
-        <!-- Add/Edit Couple Form Modal -->
-        <div id="coupleFormModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
-            <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-                <h3 id="modalTitle" class="text-lg font-bold mb-4">Ajouter un Couple</h3>
-                <form id="coupleForm" onsubmit="saveCoupleData(event)">
-                    <input type="hidden" id="coupleId">
-                    <div class="mb-4">
-                        <label for="partner1" class="block mb-2">Partenaire 1</label>
-                        <input type="text" id="partner1" name="partner1" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="partner2" class="block mb-2">Partenaire 2</label>
-                        <input type="text" id="partner2" name="partner2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="weddingDate" class="block mb-2">Date de Mariage</label>
-                        <input type="date" id="weddingDate" name="weddingDate" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    </div>
-                    <div class="flex justify-end space-x-4">
-                        <button type="button" onclick="closeCoupleForm()" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Annuler</button>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Sauvegarder</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+        
 
     <script>
-        let couples = [
-            {% for marriage in marriage %}
-            { id:{{ marriage.pk}}, partner1: "{{marriage.couple.person1.firstname}}   {{marriage.couple.person1.lastname}}", partner2: "{{marriage.couple.person2.firstname}}  {{marriage.couple.person2.lastname}}", weddingDate: "{{marriage.celebration_date}}" },
-            {% endfor %}
-        ];
-
-        function createCoupleCard(couple) {
-            return `
-                <div class="couple-card p-6" data-id="${couple.id}">
-                    <h2 class="text-2xl font-semibold mb-4">${couple.partner1} & ${couple.partner2}</h2>
-                    <p class="mb-4">Date de mariage : ${couple.weddingDate}</p>
-                    <div class="flex justify-end space-x-4">
-                        <a href="{% url 'acte'  %}" class="bg-green-400 text-white px-4 py-2 rounded-full hover:bg-green-800 transition">Acte</a>
-                        <a href="{% url 'infoCouple'%}" class="border border-solid border-gray-600 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-300 transition">Details</a>
-                        <button onclick="deleteCouple(${couple.id})" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-800 transition">Supprimer</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderCouples() {
-            const container = document.getElementById('couples-container');
-            container.innerHTML = couples.map(createCoupleCard).join('');
-        }
-
-        function showAddCoupleForm() {
-            document.getElementById('modalTitle').textContent = 'Ajouter un Couple';
-            document.getElementById('coupleId').value = '';
-            document.getElementById('partner1').value = '';
-            document.getElementById('partner2').value = '';
-            document.getElementById('weddingDate').value = '';
-            document.getElementById('coupleFormModal').classList.remove('hidden');
-        }
-
-        function closeCoupleForm() {
-            document.getElementById('coupleFormModal').classList.add('hidden');
-        }
-
-        function saveCoupleData(event) {
-            event.preventDefault();
-            const id = document.getElementById('coupleId').value;
-            const newCouple = {
-                id: id ? parseInt(id) : Date.now(),
-                partner1: document.getElementById('partner1').value,
-                partner2: document.getElementById('partner2').value,
-                weddingDate: document.getElementById('weddingDate').value
-            };
-
-            if (id) {
-                const index = couples.findIndex(c => c.id === parseInt(id));
-                couples[index] = newCouple;
-            } else {
-                couples.push(newCouple);
-            }
-
-            renderCouples();
-            closeCoupleForm();
-            animateCard(newCouple.id);
-        }
-
-        function editCouple(id) {
-            const couple = couples.find(c => c.id === id);
-            if (couple) {
-                document.getElementById('modalTitle').textContent = 'Modifier le Couple';
-                document.getElementById('coupleId').value = couple.id;
-                document.getElementById('partner1').value = couple.partner1;
-                document.getElementById('partner2').value = couple.partner2;
-                document.getElementById('weddingDate').value = couple.weddingDate;
-                document.getElementById('coupleFormModal').classList.remove('hidden');
-            }
-        }
-
-        function deleteCouple(id) {
-            if (confirm('Êtes-vous sûr de vouloir supprimer ce couple ?')) {
-                couples = couples.filter(c => c.id !== id);
-                renderCouples();
-            }
-        }
-
-        function searchCouples() {
-            const searchTerm = document.getElementById('search').value.toLowerCase();
-            const filteredCouples = couples.filter(couple => 
-                couple.partner1.toLowerCase().includes(searchTerm) || 
-                couple.partner2.toLowerCase().includes(searchTerm) ||
-                couple.weddingDate.includes(searchTerm)
-            );
-            const container = document.getElementById('couples-container');
-            container.innerHTML = filteredCouples.map(createCoupleCard).join('');
-        }
-
-        function animateCard(id) {
-            gsap.from(`[data-id="${id}"]`, {
-                duration: 0.5,
-                scale: 0.95,
-                opacity: 0.5,
-                ease: "power2.out"
-            });
-        }
+       
 
         document.addEventListener('DOMContentLoaded', function() {
-            renderCouples();
-            // gsap.from(".couple-card", {
-            //     duration: 0.8,
-            //     y: 50,
-            //     opacity: 0,
-            //     stagger: 0.2,
-            //     ease: "power3.out"
-            // });
+             gsap.from(".couple-card", {
+                duration: 0.2,
+                 y: 50,
+                 opacity: 1,
+                 stagger: 0,
+                ease: "power3.out"
+             });
 
             document.getElementById('search').addEventListener('input', searchCouples);
         });
