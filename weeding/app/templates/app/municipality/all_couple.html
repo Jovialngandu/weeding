@@ -79,12 +79,9 @@
 
     <script>
         let couples = [
-            { id: 1, partner1: "Marie Dubois", partner2: "Jean Martin", weddingDate: "2023-05-12" },
-            { id: 2, partner1: "Sophie Lefèvre", partner2: "Thomas Dupont", weddingDate: "2023-06-18" },
-            { id: 3, partner1: "Claire Moreau", partner2: "Antoine Girard", weddingDate: "2023-07-22" },
-            { id: 4, partner1: "Marie Dubois", partner2: "Jean Martin", weddingDate: "2023-05-12" },
-            { id: 5, partner1: "Sophie Lefèvre", partner2: "Thomas Dupont", weddingDate: "2023-06-18" },
-            { id: 6, partner1: "Claire Moreau", partner2: "Antoine Girard", weddingDate: "2023-07-22" },
+            {% for marriage in marriage %}
+            { id:{{ marriage.pk}}, partner1: "{{marriage.couple.person1.firstname}}   {{marriage.couple.person1.lastname}}", partner2: "{{marriage.couple.person2.firstname}}  {{marriage.couple.person2.lastname}}", weddingDate: "{{marriage.celebration_date}}" },
+            {% endfor %}
         ];
 
         function createCoupleCard(couple) {
