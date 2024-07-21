@@ -31,7 +31,7 @@ urlpatterns = [
               path("infoCouple",couple_details.couple_details.as_view(), name="infoCouple"), 
     #municipality/mayor
               path("create_user",create_officer.create_officer.as_view(), name="create_user"),
-              path("acte",mariage_certificate.mariage_certificate.as_view(), name="acte"),
+              path("acte/<int:id>",mariage_certificate.mariage_certificate.as_view(), name="acte"),
               
     #public
              path("logout", auth_view.logout.as_view(), name="logout"),

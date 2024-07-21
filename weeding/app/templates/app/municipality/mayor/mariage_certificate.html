@@ -47,16 +47,24 @@
             <div class="card p-6">
                 <h2 class="text-2xl font-semibold mb-4">Acte de Mariage</h2>
                 <div class="bg-gray-100 p-4 rounded-lg mb-4" id="marriage-certificate">
-                    <h3 class="text-xl font-semibold mb-2">République Française</h3>
+                    <h3 class="text-xl font-semibold mb-2">République Democratique Du Congo</h3>
                     <p class="mb-2"><strong>Acte de Mariage</strong></p>
-                    <p>Le 12 mai 2023 à 14h30</p>
+                    <p> {{marriage.celebration_date}}</p>
                     <p>Ont été unis par les liens du mariage :</p>
-                    <p class="mt-2"><strong>Marie DUBOIS</strong>, née le 15 mars 1990 à Paris</p>
+                    <p class="mt-2"><strong>{{marriage.couple.person1.firstname}}   {{marriage.couple.person1.lastname}}</strong>, née le {{marriage.couple.person1.date_of_birth}} à {{marriage.couple.person1.place_of_birth}}</p>
                     <p>et</p>
-                    <p class="mb-2"><strong>Jean MARTIN</strong>, né le 22 juillet 1988 à Lyon</p>
-                    <p>Mariage célébré à la Mairie du 3ème arrondissement de Paris</p>
-                    <p>En présence des témoins : Sophie Durand et Thomas Petit</p>
-                    <p class="mt-2">Officier d'état civil : Mme Lefevre</p>
+                    <p class="mb-2"><strong>{{marriage.couple.person2.firstname}}   {{marriage.couple.person2.lastname}}</strong>, née le {{marriage.couple.person2.date_of_birth}} à {{marriage.couple.person2.place_of_birth}}</p>
+                    <p>Mariage célébré à {{marriage.celebration_place}} </p>
+                    <p>En présence du témoin :
+                        
+                        {% for witness in witness %}
+                        
+                        {{witness.person.firstname}}  {{witness.person.lastname}}  ,
+                        {% endfor %}
+                        
+                    
+                    </p>
+                    <p class="mt-2">Officier d'état civil : {{marriage.officer.user.person.firstname}}   {{marriage.officer.user.person.lastname}}</p>
                 </div>
                 <div class="flex justify-between">
                     <button onclick="printCertificate()" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">Imprimer</button>
