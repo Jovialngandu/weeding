@@ -78,8 +78,8 @@
                             <td class="p-3">{{marriage.celebration_place}}</td>
                             <td class="p-3">{{marriage.officer.user.person.firstname}} {{marriage.officer.user.person.lastname}}</td>
                             <td class="p-3">
-                                 <a href="{% url 'acte'  %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
-                                <a href="{% url 'infoCouple'  %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a> 
+                                 <a href="{% url 'acte' marriage.couple.id %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple' marriage.couple.id %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a> 
                             </td>
                         </tr>
                         {% endfor %}

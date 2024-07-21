@@ -28,7 +28,7 @@ urlpatterns = [
               path("couples",all_couple.couples.as_view(), name="couples"),
               path("demandes",all_demand.all_demand.as_view(), name="demandes"),
               path("historicMariage",historic_mariage.historic_mariage.as_view(), name="historicMariage"),
-              path("infoCouple",couple_details.couple_details.as_view(), name="infoCouple"), 
+              path("infoCouple/<int:id>",couple_details.couple_details.as_view(), name="infoCouple"), 
     #municipality/mayor
               path("create_user",create_officer.create_officer.as_view(), name="create_user"),
               path("acte/<int:id>",mariage_certificate.mariage_certificate.as_view(), name="acte"),
