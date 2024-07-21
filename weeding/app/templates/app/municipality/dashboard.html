@@ -44,26 +44,30 @@
 
             <a href="{% url 'profil' %}"class="font-bold">
                 <i class="fa fa-user rounded-xl bg-white p-2"></i>
-                User name
+                {{profil.firstname}} {{profil.lastname}} {{profil.middlename}}
             </a>
         </header>
-        
+        <script>
+            var marriagesByMonth = {{ marriages_by_month}};
+            // Faites quelque chose avec la variable marriagesByMonth en JavaScript
+            const valuesArray = Object.values(marriagesByMonth);
+          </script>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <div class="dashboard-card p-6">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Mariages à venir</h2>
-                <p class="text-3xl font-bold text-blue-600">24</p>
+                <p class="text-3xl font-bold text-blue-600">{{nbr_upcoming_mariages}}</p>
             </div>
             <div class="dashboard-card p-6">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Mariages ce mois</h2>
-                <p class="text-3xl font-bold text-green-600">18</p>
+                <p class="text-3xl font-bold text-green-600">{{mariages_this_month}}</p>
             </div>
             <div class="dashboard-card p-6">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Dossiers en attente</h2>
-                <p class="text-3xl font-bold text-yellow-600">7</p>
+                <p class="text-3xl font-bold text-yellow-600">{{request_attente_nbr}}</p>
             </div>
             <div class="dashboard-card p-6">
                 <h2 class="text-xl font-semibold text-gray-700 mb-2">Mariages célébrés</h2>
-                <p class="text-3xl font-bold text-purple-600">132</p>
+                <p class="text-3xl font-bold text-purple-600">{{nbr_celebrate}}</p>
             </div>
         </div>
         
@@ -87,34 +91,25 @@
                             <th class="p-3">Date</th>
                             <th class="p-3">Couple</th>
                             <th class="p-3">Lieu</th>
-                            <th class="p-3">Statut</th>
+                            {% comment %} <th class="p-3">Statut</th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
+
+                        {% for marriage  in upcoming_mariages  %}
                         <tr>
-                            <td class="p-3">15/06/2023</td>
-                            <td class="p-3">Marie Dubois & Jean Martin</td>
-                            <td class="p-3">Mairie du 3ème</td>
-                            <td class="p-3"><span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-sm">Confirmé</span></td>
+                            <td class="p-3">{{marriage.celebration_date}}</td>
+                            <td class="p-3">{{marriage.couple.person1.firstname}} & {{marriage.couple.person2.firstname}}</td>
+                            <td class="p-3">{{marriage.celebration_place}}</td>
+                            {% comment %} <td class="p-3"><span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-sm">Confirmé</span></td> {% endcomment %}
                         </tr>
-                        <tr class="bg-gray-50">
-                            <td class="p-3">18/06/2023</td>
-                            <td class="p-3">Sophie Leroy & Thomas Bernard</td>
-                            <td class="p-3">Mairie du 7ème</td>
-                            <td class="p-3"><span class="bg-yellow-200 text-yellow-800 py-1 px-2 rounded-full text-sm">En attente</span></td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">22/06/2023</td>
-                            <td class="p-3">Camille Roux & Alexandre Dupont</td>
-                            <td class="p-3">Mairie du 5ème</td>
-                            <td class="p-3"><span class="bg-green-200 text-green-800 py-1 px-2 rounded-full text-sm">Confirmé</span></td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Animations
@@ -128,13 +123,14 @@
 
             // Weddings per month chart
             const weddingsCtx = document.getElementById('weddingsChart').getContext('2d');
+            
             new Chart(weddingsCtx, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+                    labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin','juillet'],
                     datasets: [{
                         label: 'Nombre de mariages',
-                        data: [12, 19, 15, 25, 22, 30],
+                        data:valuesArray,
                         borderColor: 'rgb(59, 130, 246)',
                         tension: 0.1
                     }]
@@ -154,9 +150,9 @@
             new Chart(fileStatusCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Complet', 'En attente', 'Incomplet'],
+                    labels: ['Valide', 'En attente', 'Non valide'],
                     datasets: [{
-                        data: [65, 25, 10],
+                        data: [{{request_Valide_nbr}}, {{request_attente_nbr}}, {{request_invalide_nbr}}],
                         backgroundColor: [
                             'rgb(34, 197, 94)',
                             'rgb(234, 179, 8)',
