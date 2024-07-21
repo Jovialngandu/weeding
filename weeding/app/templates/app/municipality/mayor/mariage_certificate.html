@@ -38,14 +38,9 @@
 {% comment %} ----------------------------------------------------- {% endcomment %}
 
     <div class="div-man px-4">
-        <header class="p-3 flex align-center justify-between w-full">
-            <h1 class="text-2xl font-bold text-gray-800 mb-8">Acte de mariage et communication</h1>
+        {% include "app/gabarits/header_menu.html" with title="Acte de mariage et communication" %}
 
-            <a href="{% url 'profil' %}"class="font-bold">
-                <i class="fa fa-user rounded-xl bg-white p-2"></i>
-                User name
-            </a>
-        </header>
+       
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Acte de Mariage Section -->
