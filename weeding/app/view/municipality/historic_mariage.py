@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from app.models import  Admin 
 from app.models.Witness import  Witness
 from django.views.generic import TemplateView
+from app.models  import Person
+from app.models  import Marriage
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+@method_decorator(login_required(login_url='/login'), name='dispatch') # sur `dispatch` : pour toutes les méthode HTTP(post, get, ...)
 
 class historic_mariage(TemplateView):
     template_name = "app/municipality/historic_mariage.html"
@@ -11,5 +15,9 @@ class historic_mariage(TemplateView):
             return ''
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # print(context)
+        #RECUPERATION DES INFO DU USER CONNECTER
+        context['person_id']=self.request.user.person_id
+        user_connected=Person.objects.get(pk=context['person_id'])    
+        context['profil']=user_connected
+        print(user_connected.firstname)
         return context

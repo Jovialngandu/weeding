@@ -36,16 +36,9 @@
     {% include "app/gabarits/horizontal_menu.html" %}
 
 {% comment %} ----------------------------------------------------- {% endcomment %}
-
+   
     <div class="div-man px-4">
-        <header class="p-3 flex align-center justify-between w-full">
-            <h1 class="text-2xl font-bold text-gray-800 mb-8">Information du couple</h1>
-
-            <a href="{% url 'profil' %}"class="font-bold">
-                <i class="fa fa-user rounded-xl bg-white p-2"></i>
-                User name
-            </a>
-        </header>
+        {% include "app/gabarits/header_menu.html" with title="Information du couple" %}
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="info-card p-6">
