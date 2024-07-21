@@ -93,8 +93,8 @@
                     <h2 class="text-2xl font-semibold mb-4">${couple.partner1} & ${couple.partner2}</h2>
                     <p class="mb-4">Date de mariage : ${couple.weddingDate}</p>
                     <div class="flex justify-end space-x-4">
-                        <a href="{% url 'acte' %}" class="bg-green-400 text-white px-4 py-2 rounded-full hover:bg-green-800 transition">Acte</a>
-                        <a href="{% url 'infoCouple' %}" class="border border-solid border-gray-600 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-300 transition">Details</a>
+                        <a href="{% url 'acte'  %}" class="bg-green-400 text-white px-4 py-2 rounded-full hover:bg-green-800 transition">Acte</a>
+                        <a href="{% url 'infoCouple'%}" class="border border-solid border-gray-600 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-300 transition">Details</a>
                         <button onclick="deleteCouple(${couple.id})" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-800 transition">Supprimer</button>
                     </div>
                 </div>

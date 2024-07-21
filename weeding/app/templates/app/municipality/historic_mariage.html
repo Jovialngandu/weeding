@@ -70,46 +70,20 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        {% for marriage in celebrate_mariage %}
                         <tr>
-                            <td class="p-3">12/05/2023</td>
-                            <td class="p-3">Marie Dubois & Jean Martin</td>
-                            <td class="p-3">Mairie du 3ème</td>
-                            <td class="p-3">Mme Lefevre</td>
+                            <td class="p-3">{{marriage.celebration_date}}</td>
+                            <td class="p-3">{{marriage.couple.person1.firstname}} & {{marriage.couple.person2.firstname}}</td>
+                            <td class="p-3">{{marriage.celebration_place}}</td>
+                            <td class="p-3">{{marriage.officer.user.person.firstname}} {{marriage.officer.user.person.lastname}}</td>
                             <td class="p-3">
-                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
-                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
+                                 <a href="{% url 'acte'  %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
+                                <a href="{% url 'infoCouple'  %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a> 
                             </td>
                         </tr>
-                        <tr class="bg-gray-50">
-                            <td class="p-3">05/05/2023</td>
-                            <td class="p-3">Sophie Leroy & Thomas Bernard</td>
-                            <td class="p-3">Mairie du 7ème</td>
-                            <td class="p-3">M. Dupont</td>
-                            <td class="p-3">
-                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
-                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="p-3">28/04/2023</td>
-                            <td class="p-3">Camille Roux & Alexandre Dupont</td>
-                            <td class="p-3">Mairie du 5ème</td>
-                            <td class="p-3">Mme Moreau</td>
-                            <td class="p-3">
-                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
-                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
-                            </td>
-                        </tr>
-                        <tr class="bg-gray-50">
-                            <td class="p-3">15/04/2023</td>
-                            <td class="p-3">Julie Lambert & Nicolas Petit</td>
-                            <td class="p-3">Mairie du 2ème</td>
-                            <td class="p-3">M. Rousseau</td>
-                            <td class="p-3">
-                                <a href="{% url 'acte' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Acte</a>
-                                <a href="{% url 'infoCouple' %}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-blue-600 transition">Détails</a>
-                            </td>
-                        </tr>
+                        {% endfor %}
+                     
                     </tbody>
                 </table>
             </div>
