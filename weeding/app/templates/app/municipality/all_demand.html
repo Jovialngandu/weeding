@@ -51,9 +51,13 @@
 
     <script>
         const requests = [
-            { id: 1, couple: "Marie Dubois & Jean Martin", date: "2023-05-12", status: "En attente" },
-            { id: 2, couple: "Sophie Lefèvre & Thomas Dupont", date: "2023-06-18", status: "En attente" },
-            { id: 3, couple: "Claire Moreau & Antoine Girard", date: "2023-07-22", status: "En attente" },
+   
+            {% for request in request_attente %}
+            { id: {{request.pk}}, couple: "{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}", date: "2023-05-12", status: "{{request.request_status}}" },
+            {% endfor %}
+            {% for request in request_invalid %}
+            { id: {{request.pk}}, couple: "{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}", date: "2023-05-12", status: "{{request.request_status}}" },
+            {% endfor %}
         ];
 
         function createRequestCard(request) {
@@ -63,11 +67,14 @@
                         <h2 class="text-2xl font-semibold">${request.couple}</h2>
                         <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">${request.status}</span>
                     </div>
-                    <p class="mb-4">Date prévue : ${request.date}</p>
+                    {% comment %} <p class="mb-4">Date prévue : ${request.date}</p> {% endcomment %}
                     <div class="flex justify-end space-x-4">
+                    {% if user.is_staff %}
                         <button onclick="validateRequest(${request.id})" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">Valider</button>
                         <button onclick="cancelRequest(${request.id})" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition">Annuler</button>
-                    </div>
+                    {% endif %}
+                        </div>
+
                 </div>
             `;
         }
