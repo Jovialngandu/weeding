@@ -40,6 +40,7 @@ urlpatterns = [
              path("register", auth_view.register.as_view(), name="register"),
              # path("signin",inscription.inscription, name="inscription"),
              path("profil",profil.profil.as_view(), name="profil"),
+             path("update_profil",profil.update_profil.as_view(), name="update_profil"),
     #admin  
 
 
