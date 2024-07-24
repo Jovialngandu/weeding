@@ -10,8 +10,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 @method_decorator(login_required(login_url='/login'), name='dispatch') # sur `dispatch` : pour toutes les méthode HTTP(post, get, ...)
-class historic_mariage(TemplateView):
-    template_name = "app/municipality/historic_mariage.html"
+class update_couple(TemplateView):
+    template_name = "app/municipality/update_couple.html"
    
     def get_queryset(self):
             return ''
@@ -23,11 +23,5 @@ class historic_mariage(TemplateView):
         context['person_id']=self.request.user.person_id
         user_connected=Person.objects.get(pk=context['person_id'])    
         context['profil']=user_connected
-
-
-        #RECUPERER  LES MARIAGES QUI ONT EU LIEU
-        today = timezone.now().date()  # Obtient la date actuelle
-        celebrate_marriages = Marriage.objects.filter(celebration_date__lte=today)
-        context['celebrate_mariage']= celebrate_marriages
     
         return context
