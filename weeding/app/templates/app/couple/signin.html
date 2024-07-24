@@ -35,7 +35,7 @@
     <div class="container mx-auto px-4">
         <div class="max-w-2xl mx-auto register-card p-8">
             <h1 class="text-3xl font-bold text-center text-gray-800 mb-3">Wee<span class="text-green-400">ding</span></h1>
-            <h2 class="text-lg font-semibold text-center text-gray-600 mb-6">Generer un code pour permettre a son partenaire de s'inscription</h2>
+            <h2 class="text-lg font-semibold text-center text-gray-600 mb-6">Inscription</h2>
             
             <form id="registerForm" class="space-y-6">
                 <div class="flex justify-between align-center">
@@ -56,8 +56,12 @@
                     </div>
     
                     <div class="w-full">
-                        <label for="dateMariage" class="block text-sm font-medium text-gray-700 mb-1">Date du mariage</label>
-                        <input type="date" id="dateMariage" name="dateMariage" class="w-full ml-2 rounded-full border border-solid border-gray-300 focus:outline-green-400">
+                        <label for="userType" class="block text-sm font-medium text-gray-700 mb-1 ">Selectionnez votre sexe</label>
+                        <select id="userType" name="userType" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400">
+                            <option value="">Sélectionnez votre sexe</option>
+                            <option value="homme">Homme</option>
+                            <option value="femme">Femme</option>
+                        </select>
                     </div>
                 </div>
                 
@@ -68,18 +72,9 @@
                     </div>
     
                     <div class="w-full">
-                        <label for="lieuNaissonce" class="block text-sm font-medium text-gray-700 mb-1">Lieu de naissance</label>
-                        <input type="text" id="lieuNaissonce" name="lieuNaissonce" class="w-full ml-2 rounded-full border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre lieu de naissance">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+                        <input type="password" id="password" name="password" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre mot de passe">
                     </div>
-                </div>
-                
-                <div>
-                    <label for="userType" class="block text-sm font-medium text-gray-700 mb-1 ">Selectionnez votre sexe</label>
-                    <select id="userType" name="userType" required class="w-1/2 rounded-full border border-solid border-gray-300 focus:outline-green-400">
-                        <option value="">Sélectionnez votre rôle</option>
-                        <option value="homme">Homme</option>
-                        <option value="femme">Femme</option>
-                    </select>
                 </div>
                 
                 <div class="flex items-center">
@@ -90,11 +85,11 @@
                 </div>
                 
                 <div class="flex justify-between align-center">
-                    <a href="{% comment %} {% url 'connexion' %} {% endcomment %}" class="w-full my-2 flex justify-center py-2 px-4 border border-solid border-gray-400 rounded-full shadow-sm text-sm font-medium  hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105 ">
+                    <a href="{% url 'login' %}" class="w-full my-2 flex justify-center py-2 px-4 border border-solid border-gray-400 rounded-full shadow-sm text-sm font-medium  hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105 ">
                         Retour
                     </a>
                     <button type="submit" class="w-full my-2 flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 ease-in-out transform hover:scale-105 ml-2">
-                        Generer le code
+                        S'inscrire
                     </button>
                 </div>
             </form>

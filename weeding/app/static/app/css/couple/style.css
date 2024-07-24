@@ -1,0 +1,9 @@
+.weeding-image{
+    background:linear-gradient(to top,black,#0000009c,rgba(12, 201, 69, 0.37)), url(../../image/weeding.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.choix{
+    border-left: 5px solid rgba(12, 201, 69, 0.37);
+}

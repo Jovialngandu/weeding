@@ -1,6 +1,9 @@
 from django.urls import path
 from app.view.public import couple_login
 from app.view.couple import signin
+from app.view.couple import home
+from app.view.couple import dmMariage
+from app.view.couple import verification
 from app.view.couple import generate_key
 from app.view.municipality.mayor import create_officer
 from app.view.public import profil
@@ -9,6 +12,8 @@ from app.view.municipality import all_demand
 from app.view.municipality.mayor import   mariage_certificate
 from app.view.municipality import  couple_details  
 from app.view.municipality import historic_mariage
+from app.view.municipality import add_couple
+from app.view.municipality import update_couple
 # from app.view.municipality import dashboard
 from app.view.municipality import dashboard
 from .view.public import profile_view
@@ -23,6 +28,9 @@ urlpatterns = [
               path("generate_key",generate_key.generate_key.as_view(), name="generate_key"),  
               path("signin_couple",signin.signin.as_view(), name="signin_couple"),  
               path("couple_login",couple_login.connexion.as_view(), name="couple_login"),
+              path("home",home.home.as_view(), name="home"),
+              path("dmMariage",dmMariage.dmMariage.as_view(), name="dmMariage"),
+              path("verification",verification.verification.as_view(), name="verification"),
     #municipality
               path("",dashboard.index.as_view(), name="dashboard"),
               path("couples",all_couple.couples.as_view(), name="couples"),

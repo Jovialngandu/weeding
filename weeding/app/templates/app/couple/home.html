@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - weeding</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/app/css/flowbite.min-2.3.0.css' %}">
+    <script src="{% static '/app/js/flowbite.min-2.3.0.js' %}"></script>
+    <script src="{% static '/app/js/gsap.min.js'%}"></script>
+
+    <link rel="stylesheet" href="{% static '/app/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/app/css/couple/style.css' %}">
+    <link href="{% static '/app/css/css2.css' %}" rel="stylesheet">
+    <script src="{% static '/app/js/chart.js' %}"></script>
+</head>
+<body class="bg-gray-100">
+    {% include "app/couple/gabarits/header.html" with title="Home" %}
+
+    <!-- Hero Section -->
+    <section class="py-8 weeding-image bg-cover bg-center h-screen">
+        <div class="bg-black bg-opacity-50 h-full flex items-center justify-center">
+            <div class="text-center text-white">
+                <h2 class="text-4xl font-bold mb-4">Réalisez Votre Rêve de Mariage</h2>
+                <p class="mb-8 text-lg">Simplifiez votre demande de mariage civile avec notre guide complet.</p>
+                <a href="{% url 'dmMariage' %}" class="bg-white text-gray-800 py-2 px-4 rounded-full text-lg hover:bg-gray-200 transition duration-300">Commencer Maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Procedure Section -->
+    <section id="procedure" class="py-16 bg-gray-50">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 p-6">Procédure de Demande</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="choix bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">1. Préparation</h3>
+                    <p class="text-gray-600">Collectez tous les documents nécessaires pour votre demande de mariage civile.</p>
+                </div>
+                <div class="choix bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">2. Soumission</h3>
+                    <p class="text-gray-600">Soumettez votre demande au bureau de l'état civil de votre commune.</p>
+                </div>
+                <div class="choix bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4">3. Célébration</h3>
+                    <p class="text-gray-600">Fêtez votre union avec vos proches après la validation de votre demande.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents Required Section -->
+    <section id="documents" class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 p-6">Documents Requis</h2>
+            <div class="text-left max-w-3xl">
+                <ul class="list-disc list-inside text-gray-600">
+                    <li>Copies d'actes de naissance des deux partenaires</li>
+                    <li>Preuve d'identité (carte d'identité, passeport, etc.)</li>
+                    <li>Certificat de résidence</li>
+                    <li>Déclaration de célibat ou de divorce</li>
+                    <li>Preuve de domicile</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow">
+        <div class="container mx-auto p-6 text-center text-gray-600">
+            <p>&copy; 2024 Weeding</p>
+        </div>
+    </footer>
+
+</body>
+</html>
