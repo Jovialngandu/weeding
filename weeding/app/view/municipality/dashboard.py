@@ -29,7 +29,7 @@ class index(TemplateView) :
     template_name = "app/municipality/dashboard.html"
     def  verify(self, **kwargs):
         context={}
-        if self.request.user.is_staff:
+        if not self.request.user.is_staff:
             #RECUPERATION DES INFO DU USER CONNECTER
             context['person_id']=self.request.user.person_id
             self.template_name="app/municipality/dashboard.html"
