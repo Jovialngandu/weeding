@@ -5,6 +5,8 @@ from app.models.Couple import Person
 from app.models.Marriage import Marriage
 from app.models.Witness import Witness
 from django.views.generic import TemplateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 class couple_details(TemplateView):
     template_name = "app/municipality/couple_details.html"
@@ -29,3 +31,14 @@ class couple_details(TemplateView):
         context["witness"]= Witness.objects.filter(marriage_id=context["marriage"].pk)
         # print(context)
         return context
+    
+class couple_detail_update(couple_details):
+
+            template_name = "app/municipality/couple_details.html"
+            
+            def post(self, request, *args, **kwargs):
+             
+             return HttpResponseRedirect(reverse("infoCouple" ,args=(self.kwargs['id'],)))
+
+
+     

@@ -14,6 +14,7 @@ from app.view.municipality import  couple_details
 from app.view.municipality import historic_mariage
 from app.view.municipality import add_couple
 from app.view.municipality import update_couple
+ 
 # from app.view.municipality import dashboard
 from app.view.municipality import dashboard
 from .view.public import profile_view
@@ -36,9 +37,14 @@ urlpatterns = [
               path("couples",all_couple.couples.as_view(), name="couples"),
               path("demandes",all_demand.all_demand.as_view(), name="demandes"),
               path("historicMariage",historic_mariage.historic_mariage.as_view(), name="historicMariage"),
-              path("infoCouple/<int:id>",couple_details.couple_details.as_view(), name="infoCouple"),
               path("add_couple",add_couple.add_couple.as_view(), name="add_couple"),
-              path("update_couple",update_couple.update_couple.as_view(), name="update_couple"),
+
+              path("infoCouple/<int:id>",couple_details.couple_details.as_view(), name="infoCouple"),
+              path("infoCouple_update/<int:id>",couple_details.couple_detail_update.as_view(), name="infoCouple_update"), 
+              path("update_couple/<int:id>",update_couple.update_couple.as_view(), name="update_couple"),
+              path("update_couple_applicate/<int:id>",update_couple.applicate_update.as_view(), name="update_couple_applicate"),
+
+
     #municipality/mayor
               path("create_user",create_officer.create_officer.as_view(), name="create_user"),
               path("acte/<int:id>",mariage_certificate.mariage_certificate.as_view(), name="acte"),
@@ -50,6 +56,7 @@ urlpatterns = [
              path("register", auth_view.register.as_view(), name="register"),
              # path("signin",inscription.inscription, name="inscription"),
              path("profil",profil.profil.as_view(), name="profil"),
+             path("update_profil",profil.update_profil.as_view(), name="update_profil"),
     #admin  
 
 
