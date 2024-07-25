@@ -44,7 +44,7 @@
             <div class="profile-card p-6 col-span-2  ">
                 <h2 class="text-2xl font-semibold mb-4">Informations Personnelles</h2>
                
-              <form method="post" action="{% url 'update_profil'  %}">
+              <form method="post" action="{% url 'update_profil'  %}" enctype="multipart/form-data">
                
                     <div class="mb-4">   
                         <label for="firstname" class="block text-sm font-medium text-gray-700">Nom Complet</label>
@@ -75,18 +75,23 @@
                                 value="{{profil.phone_number}}"
                                 >
                         </div>
-                        <button type="submit" class="mt-4 bg-green-400 text-white px-4 py-2 rounded-full text-end hover:bg-green-800 transition">Sauvegarder les Modifications</button>
-                     </form> 
+                   
                     </div>
                      <!-- Profile Picture -->
             <div class="profile-card p-6">
                 <h2 class="text-2xl font-semibold mb-4">Photo de Profil</h2>
                 <div class="mb-4">
-                    <img id="profilePicture" src="https://picsum.photos/200/200?random=1" alt="Photo de profil" class="w-48 h-48 rounded-full mx-auto mb-4">
-                    <input type="file" id="profilePictureUpload" accept="image/*" class="hidden">
-                    <button onclick="document.getElementById('profilePictureUpload').click()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Changer la Photo</button>
+                  
+                    <img id="profilePicture" src="{% static image %}" alt="Photo de profil" class="w-48 h-48 rounded-full mx-auto mb-4">
+                    {% comment %} <input type="file" id="profilePictureUpload" accept="image/*" class="hidden" name="image"> 
+                    <input type="file" id="profilePictureUpload"   name="image" accept="image/*" >{% endcomment %}
+                    <input type="file" id="profilePictureUpload"    name="image" accept="image/*" >
+                    {% comment %} <button onclick="document.getElementById('profilePictureUpload').click()" class="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">Changer la Photo</button> {% endcomment %}
                 </div>
             </div>
+                                    <button type="submit" class="mt-4 bg-green-400 text-white px-4 py-2 rounded-full text-end hover:bg-green-800 transition">Sauvegarder les Modifications</button>
+
+        </form> 
         </div>
 
                 

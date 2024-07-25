@@ -4,6 +4,7 @@ from app.models  import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
+from app.models.ImageUpload import ImageUpload
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -23,6 +24,18 @@ class profil(TemplateView):
         context['profil']=user_connected 
         context['email']=self.request.user.email
         context['role']=self.request.user.is_staff
+        
+        if  ImageUpload.objects.filter(user_id=self.request.user.id).exists():
+                img=ImageUpload.objects.get(user_id=self.request.user.id)
+                context['image']="app/image/"+ str(img.image)
+              
+            
+          
+        else:
+             context['image']=""
+             
+            
+               
        
         return context
 class update_profil(TemplateView):
@@ -43,6 +56,15 @@ class update_profil(TemplateView):
             phone=request.POST.get("phone")
             user=User.objects.get(pk=self.request.user.id) 
             person=Person.objects.get(pk=self.request.user.person_id)
+            if  ImageUpload.objects.filter(user_id=self.request.user.id).exists():
+                my_image=ImageUpload.objects.get(user_id=self.request.user.id)
+              
+             
+          
+            else:
+                 my_image=""
+            
+                
             person.firstname=firstname
             person.lastname=lastname
             person.middlename=middlename
@@ -50,8 +72,22 @@ class update_profil(TemplateView):
             person.save()
             user.email=email
             user.save()
+            if 'image' in request.FILES:
+                image_file = request.FILES['image']
+                if not my_image :
+                
+                        # Créez une instance du modèle si la personne n'avait pas  d'image profil
+                
+                        new_image = ImageUpload(image=image_file ,user_id=self.request.user.id)
+                        new_image.save()
+                else:#sinon on modifie ce qu'il y avait
+                
+                     my_image.image=image=image_file
+                     my_image.save()
             
             return HttpResponseRedirect(reverse("profil"))
+            
+            
            
 
       
