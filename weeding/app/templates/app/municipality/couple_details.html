@@ -62,9 +62,9 @@
                     </div>
                 </div>
 
-                <a href="{% url 'infoCouple_update' marriage.couple.id  %}">
+                {% comment %} <a href="{% url 'infoCouple_update' marriage.couple.id  %}">
                 <button class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">Modifier</button>
-                </a>
+                </a> {% endcomment %}
             </div>
             
             <div class="info-card p-6 ">
@@ -81,9 +81,9 @@
                 
                 
                 </p>
-                <a href="{% url 'update_couple' %}" class="block text-center mt-4 bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition   mt-10 ">Modifier</a>
 
             </div>
+            <a href="{% url 'update_couple' marriage.couple.id  %}" class="block text-center mt-4 bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition   mt-10 ">Modifier</a>
 
         </div>
         

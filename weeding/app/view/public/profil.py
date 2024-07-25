@@ -36,9 +36,9 @@ class update_profil(TemplateView):
      def post(self, request, *args, **kwargs):
             fullname=request.POST.get("fullname")
             fullname=fullname.split('--')
-            firstname=fullname[0]
-            lastname=fullname[1]
-            middlename=fullname[2]
+            firstname=fullname[0].strip()
+            lastname=fullname[1].strip()
+            middlename=fullname[2].strip()
             email=request.POST.get("email")
             phone=request.POST.get("phone")
             user=User.objects.get(pk=self.request.user.id) 
@@ -50,7 +50,7 @@ class update_profil(TemplateView):
             person.save()
             user.email=email
             user.save()
-            print(person)
+            
             return HttpResponseRedirect(reverse("profil"))
            
 
