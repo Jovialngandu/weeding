@@ -7,6 +7,10 @@
             <a href="{% url 'demandes' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-envelope-open-text"></i> Demandes</a>
             <a href="{% url 'couples' %}" class="p-3 my-px rounded-xl hover:bg-gray-200 transition"><i class="fa fa-venus-mars"></i> Couples</a>
             <a href="{% url 'historicMariage' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-book"></i> Historique</a>
+
+            {%if user.is_superuser%}
+            <a href="{% url 'create_user' %}" class="p-3 my-2 rounded-xl hover:bg-gray-200 transition"><i class="fa fa-book"></i> Add Officer</a>
+            {%endif%}
         </nav>
     </div>
 

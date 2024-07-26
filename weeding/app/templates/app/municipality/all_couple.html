@@ -52,9 +52,12 @@
                         <h2 class="text-2xl font-semibold mb-4">{{marriage.couple.person1.firstname}}   {{marriage.couple.person1.lastname}} &amp; {{marriage.couple.person2.firstname}}  {{marriage.couple.person2.lastname}}</h2>
                         <p class="mb-4">Date de mariage :{{marriage.celebration_date}}</p>
                         <div class="flex justify-end space-x-4">
+                            {% if  user.is_superuser %}
                             <a href="{% url 'acte' marriage.couple.id %}" class="bg-green-400 text-white px-4 py-2 rounded-full hover:bg-green-800 transition">Acte</a>
+
+                             {% endif %}
                             <a href="{% url 'infoCouple' marriage.couple.id %}" class="border border-solid border-gray-600 text-gray-600 px-4 py-2 rounded-full hover:bg-gray-300 transition">Details</a>
-                            <button  class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-800 transition">Supprimer</button>
+                           
                         </div>
                     </div>
             {% endfor %}

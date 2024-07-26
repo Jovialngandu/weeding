@@ -40,7 +40,7 @@ urlpatterns = [
               path("add_couple",add_couple.add_couple.as_view(), name="add_couple"),
 
               path("infoCouple/<int:id>",couple_details.couple_details.as_view(), name="infoCouple"),
-              path("infoCouple_update/<int:id>",couple_details.couple_detail_update.as_view(), name="infoCouple_update"), 
+              path("infoCouple_update/<int:id>",couple_details.couple_detail_update_status.as_view(), name="infoCouple_update_status"), 
               path("update_couple/<int:id>",update_couple.update_couple.as_view(), name="update_couple"),
               path("update_couple_applicate/<int:id>",update_couple.applicate_update.as_view(), name="update_couple_applicate"),
 
