@@ -135,7 +135,7 @@
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="w-full max-w-md mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold mb-6 text-center">Inscription</h2>
-        <form method="post" action="{% url 'register' %}">
+        <form method="post" action="{% url 'create_user' %}">
             {% csrf_token %}
             <div class="mb-4">
                 <label for="lastname" class="block text-gray-700">Nom :</label>
@@ -151,13 +151,8 @@
             </div>
             <div class="mb-4">
                 <label for="nationality" class="block text-gray-700">Nationalité :</label>
-                <select id="nationality" name="nationality" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
-                    <option value="0">Congolaise</option>
-                    <option value="1">Canadienne</option>
-                    <option value="2">Américaine</option>
-                    <option value="3">Suisse</option>
-                    <option value="4">Russe</option>
-                </select>
+                <input type="text" id="nationality" name="nationality" class="w-full px-3 py-2 border border-gray-300 rounded-md" required>
+
             </div>
             <div class="mb-4">
                 <label for="email" class="block text-gray-700">Email :</label>
