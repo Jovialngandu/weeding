@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from app.models.Couple import Couple
 from app.models.Couple import Person
 from app.models.Marriage import Marriage
+from app.models.Request import Request
 from app.models.Witness import Witness
 from django.views.generic import TemplateView
 from django.http import HttpResponseRedirect
@@ -29,16 +30,27 @@ class couple_details(TemplateView):
         context["couple"] = Couple.objects.get(pk=context['id'])
         context["marriage"]= Marriage.objects.get(couple_id=context["couple"].pk)
         context["witness"]= Witness.objects.filter(marriage_id=context["marriage"].pk)
-        # print(context)
+        context["status"]=str(Request.objects.filter(couple_id=context["couple"].pk)[:1][0].request_status)
+        if context["status"]=="Valide":
+                context["valide"]=1
+        elif  context["status"]=="En attente":
+              context["en_attente"]=1
+        else:
+               context["non_valide"]=1
+              
+       
         return context
     
-class couple_detail_update(couple_details):
+class couple_detail_update_status(couple_details):
 
             template_name = "app/municipality/couple_details.html"
             
             def post(self, request, *args, **kwargs):
-             
-             return HttpResponseRedirect(reverse("infoCouple" ,args=(self.kwargs['id'],)))
+                 demande=Request.objects.filter(couple_id=self.kwargs['id'])[:1][0]
+                 demande.request_status=request.POST["list-radio"]
+                 demande.save()
+                
+                 return HttpResponseRedirect(reverse("infoCouple" ,args=(self.kwargs['id'],)))
 
 
      

@@ -24,5 +24,5 @@ class mariage_certificate(TemplateView):
         context["couple"] = Couple.objects.get(pk=context['id'])
         context["marriage"]= Marriage.objects.get(couple_id=context["couple"].pk)
         context["witness"]= Witness.objects.filter(marriage_id=context["marriage"].pk)
-        print(context["witness"][0].person.firstname)
+       
         return context

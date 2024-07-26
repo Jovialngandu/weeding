@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from app.models  import Person
 from app.models  import Marriage
+from app.models  import Mayor
+from app.models  import User
 from app.models  import Request
 from django.utils import timezone
 from datetime import datetime, timedelta
@@ -29,7 +31,7 @@ class index(TemplateView) :
     template_name = "app/municipality/dashboard.html"
     def  verify(self, **kwargs):
         context={}
-        if not self.request.user.is_staff:
+        if  self.request.user.is_staff:
             #RECUPERATION DES INFO DU USER CONNECTER
             context['person_id']=self.request.user.person_id
             self.template_name="app/municipality/dashboard.html"
@@ -87,12 +89,22 @@ class index(TemplateView) :
         else :
             self.template_name="app/couple/home.html"
 
+    def  active_super_user(self, **kwargs):
+          
+          super=Mayor.objects.all()
+          super_user=User.objects.get(pk=super[0].user_id)    
+          super_user.is_superuser=True
+          super_user.save()
+          
+          return super[0].user_id
             
             
     def get_context_data(self, **kwargs):
             datas = {}
             context = {**super().get_context_data(**kwargs), **datas}
             context=self.verify()
+        #     context['super']=self.active_super_user()
+            print(self.active_super_user())
             return context
    
     def get(self, request, *args, **kwargs):

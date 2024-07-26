@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from app.models.Couple import  Couple
 from django.views.generic import TemplateView
 from app.models  import Person
+from app.models  import Request
 from app.models  import User
 from django.utils import timezone
 from django.http import HttpResponseRedirect
@@ -91,7 +92,10 @@ class add_couple(TemplateView):
          user2 = User.objects.create_user(email= email2, password="wedding", person=person2)
          user2.save()
          couple=Couple.objects.create(person1_id=person1.id,person2_id=person2.id)
+        
          couple.save()
+         request=Request.objects.create(couple_id=couple.id,request_date=timezone.now().date()  ,request_status="En attente")
+         request.save()
           
           
 

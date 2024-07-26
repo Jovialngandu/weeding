@@ -80,9 +80,40 @@
                     {% endfor %}
                 
                 
-                </p>
+                </p> {% if  user.is_superuser %}
+                <form method="post" action="{%url 'infoCouple_update_status' marriage.couple.id  %}">
+                    {% csrf_token %}
+                    
+                <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Status ={{status}}</h3>
+                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center ps-3">
+                            <input id="horizontal-list-radio-license" type="radio" value="Valide" name="list-radio" {%if valide %}checked {%endif%} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="horizontal-list-radio-license" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Valide</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center ps-3">
+                            <input id="horizontal-list-radio-id" type="radio" value="En attente"{%if en_attente  %}checked {%endif%}  name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="horizontal-list-radio-id" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">En attente</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center ps-3">
+                            <input id="horizontal-list-radio-military" type="radio" value="Non valide" {%if non_valide %}checked {%endif%}  name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="horizontal-list-radio-military" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Non valide</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
 
+                            <input id="change" type="submit" value="validate change" name="validate" class="w-full p-3  h-full text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                       
+                    </li>
+                </ul>
+            </form>
+            {% endif %}
             </div>
+            
             <a href="{% url 'update_couple' marriage.couple.id  %}" class="block text-center mt-4 bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-800 transition   mt-10 ">Modifier</a>
 
         </div>

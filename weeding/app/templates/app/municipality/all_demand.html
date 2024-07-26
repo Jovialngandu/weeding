@@ -48,97 +48,39 @@
             
             <div id="requests-container" class="space-y-6">
                 <!-- Request cards will be dynamically inserted here -->
+                {% for request in request_attente %}
+                    <div class="request-card p-6" data-id="10">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-semibold">{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &amp;  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}</h2>
+                            <div>
+                                <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">{{request.request_status}}</span>
+                                <a href="{% url 'infoCouple' request.couple.id %}" class="px-4">Detail </a>                            </div> 
+                        </div>
+                        
+                        <div class="flex justify-end space-x-4">
+                        
+                            </div>
+    
+                    </div>
+                {% endfor %}
+                {% for request in request_invalid %}
+                    <div class="request-card p-6" data-id="10">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-semibold">{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &amp;  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}</h2>
+                            <div>
+                                <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">{{request.request_status}}</span>
+                                <a href="{% url 'infoCouple' request.couple.id %}" class="px-4">Detail </a>                            </div> 
+                        </div>
+                        
+                        <div class="flex justify-end space-x-4">
+                        
+                            </div>
+    
+                    </div>
+                {% endfor %}
+               
             </div>
         </div>
 
-    <script>
-        const requests = [
-   
-            {% for request in request_attente %}
-            { id: {{request.pk}}, couple: "{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}", date: "2023-05-12", status: "{{request.request_status}}" },
-            {% endfor %}
-            {% for request in request_invalid %}
-            { id: {{request.pk}}, couple: "{{request.couple.person1.firstname}}  {{request.couple.person1.lastname}}  &  {{request.couple.person2.firstname}}  {{request.couple.person2.lasttname}}", date: "2023-05-12", status: "{{request.request_status}}" },
-            {% endfor %}
-        ];
-
-        function createRequestCard(request) {
-            return `
-                <div class="request-card p-6" data-id="${request.id}">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-2xl font-semibold">${request.couple}</h2>
-                        <div>
-                            <span class="px-3 py-1 bg-yellow-200 text-yellow-800 rounded-full text-sm">${request.status}</span>
-                            <a href="{% url 'infoCouple' 1 %}" class="px-4">Detail</a>
-                        </div>
-                    </div>
-                    {% comment %} <p class="mb-4">Date prévue : ${request.date}</p> {% endcomment %}
-                    <div class="flex justify-end space-x-4">
-                    {% if user.is_staff %}
-                        <button onclick="validateRequest(${request.id})" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">Valider</button>
-                        <button onclick="cancelRequest(${request.id})" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition">Annuler</button>
-                    {% endif %}
-                        </div>
-
-                </div>
-            `;
-        }
-
-        function renderRequests() {
-            const container = document.getElementById('requests-container');
-            container.innerHTML = requests.map(createRequestCard).join('');
-        }
-
-        function validateRequest(id) {
-            const request = requests.find(r => r.id === id);
-            if (request) {
-                request.status = "Validé";
-                renderRequests();
-                animateCard(id);
-            }
-        }
-
-        function cancelRequest(id) {
-            const request = requests.find(r => r.id === id);
-            if (request) {
-                request.status = "Annulé";
-                renderRequests();
-                animateCard(id);
-            }
-        }
-
-        function animateCard(id) {
-            gsap.from(`[data-id="${id}"]`, {
-                duration: 0.5,
-                scale: 0.95,
-                opacity: 0.5,
-                ease: "power2.out"
-            });
-        }
-
-        function searchRequests() {
-            const searchTerm = document.getElementById('search').value.toLowerCase();
-            const filteredRequests = requests.filter(request => 
-                request.couple.toLowerCase().includes(searchTerm) || 
-                request.date.includes(searchTerm) ||
-                request.status.toLowerCase().includes(searchTerm)
-            );
-            const container = document.getElementById('requests-container');
-            container.innerHTML = filteredRequests.map(createRequestCard).join('');
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            renderRequests();
-            // gsap.from(".request-card", {
-            //     duration: 0.8,
-            //     y: 50,
-            //     opacity: 0,
-            //     stagger: 0.2,
-            //     ease: "power3.out"
-            // });
-
-            document.getElementById('search').addEventListener('input', searchRequests);
-        });
-    </script>
 </body>
 </html>
