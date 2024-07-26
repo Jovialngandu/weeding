@@ -3,8 +3,12 @@ from django.views.generic import TemplateView
 from django.http import HttpResponse
 from app.models  import Person
 from app.models  import User
+from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+@method_decorator(login_required(login_url='/login'), name='dispatch') # sur `dispatch` : pour toutes les méthode HTTP(post, get, ...)
 
 class create_officer(TemplateView):
     template_name = "app/municipality/mayor/create_officer.html"
