@@ -5,7 +5,7 @@
             <nav class="flex justify-between items-center">
                 <a href="{% url 'home' %}" class="text-gray-400 font-bold hover:text-gray-900 mx-4">accueil</a>
                 <a href="{% url 'dmMariage' %}" class="text-gray-400 font-bold hover:text-gray-900 mx-4">Demande</a>
-                <a href="{% url 'verification' %}" class="text-gray-400 font-bold hover:text-gray-900 mx-4">Varification</a>
+                {% comment %} <a href="{% url 'verification' %}" class="text-gray-400 font-bold hover:text-gray-900 mx-4">Varification</a> {% endcomment %}
 
                 <!-- Le bouton de Deconnexion ainsi le nom d'utilisateur connecter -->
                 <a href="{% url 'logout' %}" class="my-2 flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-green-400 hover:bg-green-800 transition duration-300 ease-in-out" >Deconnexion</a>

@@ -26,6 +26,7 @@ class register(forms.Form):
 	
 	sex = forms.ChoiceField(label="Sexe", choices=[('f', 'Femme'), ('m', 'Homme')])
 
+	#date_of_birth = forms.CharField(label="Date de naissance")
 	date_of_birth = forms.DateField(label="Date de naissance")
 	place_of_birth = forms.CharField(label="Lieu de naissance", max_length=100, required=False)
 	

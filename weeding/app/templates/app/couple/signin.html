@@ -37,15 +37,15 @@
             <h1 class="text-3xl font-bold text-center text-gray-800 mb-3">Wee<span class="text-green-400">ding</span></h1>
             <h2 class="text-lg font-semibold text-center text-gray-600 mb-6">Inscription</h2>
             
-            <form id="registerForm" class="space-y-6">
+            <form action="{% url 'register'  %}" method="post" id="registerForm" class="space-y-6">{% csrf_token %}
                 <div class="flex justify-between align-center">
                     <div class="w-full">
                         <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">Prénom</label>
-                        <input type="text" id="firstName" name="firstName" required class="w-full rounded-full border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre prénom">
+                        <input type="text" id="firstName" name="firstname" required class="w-full rounded-full border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre prénom">
                     </div>
                     <div class="w-full">
                         <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Nom</label>
-                        <input type="text" id="lastName" name="lastName" required class="w-full ml-2 rounded-full border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre nom">
+                        <input type="text" id="lastName" name="lastname" required class="w-full ml-2 rounded-full border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre nom">
                     </div>
                 </div>
 
@@ -57,23 +57,27 @@
     
                     <div class="w-full">
                         <label for="userType" class="block text-sm font-medium text-gray-700 mb-1 ">Selectionnez votre sexe</label>
-                        <select id="userType" name="userType" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400">
+                        <select id="userType" name="sex" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400">
                             <option value="">Sélectionnez votre sexe</option>
-                            <option value="homme">Homme</option>
-                            <option value="femme">Femme</option>
+                            <option value="m">Homme</option>
+                            <option value="f">Femme</option>
                         </select>
                     </div>
                 </div>
-                
+                <input style="display:none;" value="0" name="nationality"/>
                 <div class="flex justify-between align-center">
                     <div class="w-full">
                         <label for="dateNaissance" class="block text-sm font-medium text-gray-700 mb-1">Date de naissance</label>
-                        <input type="date" id="dateNaissance" name="dateNaissance" required class="w-full rounded-full border border-solid border-gray-300 focus:outline-green-400">
+                        <input type="date" id="dateNaissance" name="date_of_birth" required class="w-full rounded-full border border-solid border-gray-300 focus:outline-green-400">
                     </div>
     
                     <div class="w-full">
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
                         <input type="password" id="password" name="password" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre mot de passe">
+                    </div>
+                    <div class="w-full">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Confirmer Mot de passe</label>
+                        <input type="password" id="password" name="confirm_password" required class="w-full rounded-full ml-2 border border-solid border-gray-300 focus:outline-green-400" placeholder="Entrez votre mot de passe">
                     </div>
                 </div>
                 

@@ -5,6 +5,9 @@ from django.views.generic import TemplateView
 from app.models  import Person
 from app.models  import Request
 from app.models  import User
+from app.models import  Marriage
+from app.models import  Officer
+from app.models import  Mayor
 from django.utils import timezone
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -24,6 +27,8 @@ class add_couple(TemplateView):
 
         #RECUPERATION DES INFO DU USER CONNECTER
         context['person_id']=self.request.user.person_id
+        mayor=Mayor.objects.get(user_id=self.request.user.id)
+            
         user_connected=Person.objects.get(pk=context['person_id'])    
         context['profil']=user_connected
     
@@ -67,6 +72,9 @@ class add_couple(TemplateView):
          #PHONE
          phone1=request.POST['phone1']
          phone2=request.POST['phone2']
+
+         #celebration date
+         celebration_date=request.POST['marriage-date']
          person1 = Person(lastname=lastname1,
                            firstname=firstname1,
                              middlename=middlename1,
@@ -94,6 +102,9 @@ class add_couple(TemplateView):
          couple=Couple.objects.create(person1_id=person1.id,person2_id=person2.id)
         
          couple.save()
+
+         marriage=Marriage.objects.create(couple=couple,celebration_date=celebration_date,mayor=Mayor.objects.get(user_id=self.request.user.id) ,officer=Officer.objects.get(pk=1),celebration_place='mairie')
+         marriage.save()
          request=Request.objects.create(couple_id=couple.id,request_date=timezone.now().date()  ,request_status="En attente")
          request.save()
           

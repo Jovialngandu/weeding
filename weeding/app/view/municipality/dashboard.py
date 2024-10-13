@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -48,7 +49,7 @@ class index(TemplateView) :
             upcoming_mariages = Marriage.objects.filter(celebration_date__gte=today)
             context['nbr_upcoming_mariages']=upcoming_mariages.count()
             context['upcoming_mariages']=upcoming_mariages
-            # print(upcoming_mariages[0].celebration_place)
+            print(today)
             # print(upcoming_mariages.count())
 
 
@@ -90,8 +91,8 @@ class index(TemplateView) :
             self.template_name="app/couple/home.html"
 
     def  active_super_user(self, **kwargs):
-          
           super=Mayor.objects.all()
+        #   print(super)
           super_user=User.objects.get(pk=super[0].user_id)    
           super_user.is_superuser=True
           super_user.save()
@@ -104,7 +105,7 @@ class index(TemplateView) :
             context = {**super().get_context_data(**kwargs), **datas}
             context=self.verify()
         #     context['super']=self.active_super_user()
-            print(self.active_super_user())
+            # print(self.active_super_user())
             return context
    
     def get(self, request, *args, **kwargs):

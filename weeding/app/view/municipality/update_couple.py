@@ -4,6 +4,7 @@ from app.models.Couple import  Couple
 from django.views.generic import TemplateView
 from app.models  import Person
 from app.models.User  import User
+from app.models.Marriage  import Marriage
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils import timezone
@@ -102,7 +103,7 @@ class applicate_update(TemplateView):
          person1.place_of_birth=wherebirth1
          person1.sex=sex1
          person1.save()
-         print(person1)
+         
 
          #MODIFICATION PERSONNE2
 
@@ -116,6 +117,11 @@ class applicate_update(TemplateView):
          person2.place_of_birth=wherebirth2
          person2.sex=sex2
          person2.save()
+         marriage=Marriage.objects.filter(couple_id=couple.id)
+         marriage[0].celebration_date=request.POST['marriage-date']
+         marriage[0].save()
+         print(marriage)
+         
 
          return HttpResponseRedirect(reverse("update_couple", args=(self.kwargs['id'],)))
          
