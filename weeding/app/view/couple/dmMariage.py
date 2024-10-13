@@ -30,13 +30,22 @@ class dmMariage(TemplateView):
         context["code"] = self.generate()   
         context['profil']=user_connected
         if self.is_in_couple():
+           try:
               if Couple.objects.filter(person1_id=self.request.user.person_id).exists():
                     context['partenaire']= Couple.objects.filter(person1_id=self.request.user.person_id)[0].person1
                     context["couple"] = Couple.objects.filter(person1_id=self.request.user.person_id)[0]
+                    context['marriage']=Marriage.objects.filter(couple_id=context["couple"].id)[0]
               else:
                     context['partenaire']= Couple.objects.filter(person2_id=self.request.user.person_id)[0].person2
                     context["couple"] = Couple.objects.filter(person2_id=self.request.user.person_id)[0]
+                    context['marriage']=Marriage.objects.filter(couple_id=context["couple"].id)[0]
 
+           except Exception  as e:
+                  print(e)
+        
+        
+
+                
             #   if Marriage.objects.filter(person1_id=self.request.user.person_id).exists():
 
             #        context["marriage"]= Marriage.objects.get(couple_id=context["couple"].pk)
@@ -49,8 +58,9 @@ class dmMariage(TemplateView):
             #        context["status"]=str(Request.objects.filter(couple_id=context["couple"].pk)[:1][0].request_status)
                     
                        
-               
+        print( self.is_in_couple())
         return context
+    
     def generate(self):
          key= str(self.request.user.id)+"dmAzjnjzclxqsakecccc-"+str(self.request.user.person_id)
          return key

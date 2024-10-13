@@ -4,12 +4,21 @@ import time
 import os
 import warnings
 
+
+from app.models.User import User
+from app.models.Person import Person
+from app.models.Mayor import Mayor
+
+from faker import Faker
+
+from django.contrib.auth.hashers import make_password
+
 from app.factories.AdminFactory import AdminFactory
 # from app.factories.CoupleFactory import CoupleFactory
 from app.factories.MarriageFactory import MarriageFactory
 from app.factories.MayorFactory import MayorFactory
 from app.factories.OfficerFactory import OfficerFactory
-# from app.factories.PersonFactory import PersonFactory
+from app.factories.PersonFactory import PersonFactory
 from app.factories.PhysicalAbilityFactory import PhysicalAbilityFactory
 from app.factories.RequestFactory import RequestFactory
 # from app.factories.UserFactory import UserFactory
@@ -52,3 +61,15 @@ class Command(BaseCommand):
 			# [PatientFactory, 50],
 			# [MedicoFactory, 20],
 		])
+		
+		person = Person.objects.create(lastname = Faker().name(), firstname = Faker().first_name(), middlename = Faker().last_name(), nationality = Faker().word(ext_word_list = ['Congolaise', 'Canadienne', 'Américaine', 'Suisse', 'Russe',]), phone_number = Faker().phone_number(), sex = 'm', date_of_birth = Faker().date_time_between(start_date = '-40y', end_date = '-20y'), place_of_birth = Faker().word())
+
+		user = User.objects.create(email="admin@gmail.com", password=make_password("admin"), person=person)
+		user.is_superuser = True
+		user.is_staff = True
+		user.save()
+
+		Mayor.objects.create(user=user)
+
+
+
